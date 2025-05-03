@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Jabal Builders – Excellence in Architecture & Construction
+Building Tomorrow’s Landmarks Today
 
-## Getting Started
+📌 Overview
+Welcome to Jabal Builders, a premier construction and architectural firm dedicated to innovation, sustainability, and excellence. Our website serves as a gateway to explore our projects, services, and vision for the future of construction.
 
-First, run the development server:
+🔗 Live Demo: [Coming Soon]
 
-```bash
+🚀 Features
+✔ Modern & Responsive Design – Optimized for all devices (desktop, tablet, mobile)
+✔ Interactive Project Showcase – Explore our featured works with high-quality visuals
+✔ Comprehensive Services – Detailed breakdown of our construction solutions
+✔ Contact & Inquiry System – Easy communication for potential clients
+✔ SEO-Optimized – Built for visibility and engagement
+
+📂 Website Structure
+Route	Description
+/home	Landing page with company highlights, mission, and featured projects
+/about	Our story, vision, and commitment to sustainable architecture
+/services	Detailed services: Technical Collaboration, Sustainable Solutions, and more
+/projects	Portfolio of completed and ongoing landmark projects
+/contact	Contact form, location, and inquiry submission
+🛠️ Tech Stack
+Category	Technology
+Frontend	React.js / Next.js
+Styling	Tailwind CSS 
+Hosting	Vercel / Netlify
+Animation Tailwind CSS	
+🎯 Key Messages
+"Building Tomorrow’s Landmarks Today" – Our commitment to visionary architecture.
+
+30+ Years of Innovation – A legacy of sustainable and strong construction.
+
+End-to-End Solutions – From design to execution, we bring ideas to life.
+
+📸 Preview
+(Screenshots/GIFs of the UI can be added here)
+
+🔧 Setup & Installation
+Clone the repository:
+
+bash
+git clone https://github.com/yourusername/jabal-builders.git
+Install dependencies:
+
+bash
+npm install
+Run the development server:
+
+bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open in browser:
+http://localhost:3000
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📁 Environment Variables Setup
+Create a .env file in your project root and add the following:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+env
+# Resend Email API Configuration
+RESEND_API_KEY=your_resend_api_key_here
+EMAIL_TO=recipient_email@gmail.com
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+📩 Contact
+🌐 Website: www.jabalbuilder.com (Coming Soon)
+📧 Email: contact@jabalbuilder.com
+📞 Phone: +XXX XXXX XXXX
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🌟 Join Us in Shaping the Future of Construction!
+Let’s collaborate to create landmarks that stand the test of time.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🔨 #JabalBuilders | 🏗️ #BuildingTheFuture | 🌿 #SustainableConstruction

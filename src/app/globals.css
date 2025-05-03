@@ -1,26 +1,178 @@
-@import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Base Background and Foreground */
+    --background: 30 40% 94%; /* warm ivory */
+    --foreground: 25 25% 15%; /* deep walnut brown */
+  
+    /* Card & Popover Backgrounds */
+    --card: 30 35% 97%; /* off-white */
+    --card-foreground: 25 25% 15%;
+  
+    --popover: 30 30% 95%;
+    --popover-foreground: 25 25% 15%;
+  
+    /* Primary (Brown tones) */
+    --primary: 25 40% 35%; /* medium brown */
+    --primary-foreground: 30 60% 96%; /* near-white text */
+  
+    /* Secondary (Tan) */
+    --secondary: 30 30% 85%;
+    --secondary-foreground: 25 30% 20%;
+  
+    /* Muted (Warm gray) */
+    --muted: 28 20% 80%;
+    --muted-foreground: 25 15% 35%;
+  
+    /* Accent (Coffee highlight) */
+    --accent: 25 45% 45%;
+    --accent-foreground: 30 60% 96%;
+  
+    /* Destructive (Rust red) */
+    --destructive: 10 70% 45%;
+    --destructive-foreground: 30 60% 96%;
+  
+    /* Borders, Input, Ring */
+    --border: 30 15% 80%;
+    --input: 30 15% 80%;
+    --ring: 25 45% 45%;
+  
+    --radius: 0.5rem;
+  
+    /* Sidebar (Darker contrast) */
+    --sidebar-background: 25 15% 20%;
+    --sidebar-foreground: 30 60% 96%;
+    --sidebar-primary: 25 40% 35%;
+    --sidebar-primary-foreground: 30 60% 96%;
+    --sidebar-accent: 25 20% 25%;
+    --sidebar-accent-foreground: 30 60% 96%;
+    --sidebar-border: 30 15% 70%;
+    --sidebar-ring: 10 60% 55%;
+  }
+  
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-jabal text-foreground font-poppins;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .gold-gradient {
+    @apply bg-gradient-to-r from-jabal-gold to-jabal-muted bg-clip-text text-transparent;
+  }
+  
+  .slide-in {
+    @apply transform transition-all duration-500 translate-y-10 opacity-0;
+  }
+  
+  .slide-in.active {
+    @apply translate-y-0 opacity-100;
+  }
+
+  /* New animations */
+  .animate-slow-zoom {
+    animation: slow-zoom 20s infinite alternate;
+  }
+
+  .animate-slow-pulse {
+    animation: slow-pulse 8s infinite alternate;
+  }
+
+  .hover-underline {
+    @apply relative;
+  }
+
+  .hover-underline:after {
+    @apply content-[''] absolute w-full scale-x-0 h-0.5 bottom-0 left-0 bg-jabal-gold origin-bottom-right transition-transform duration-300;
+  }
+
+  .hover-underline:hover:after {
+    @apply scale-x-100 origin-bottom-left;
+  }
+}
+
+@keyframes slow-zoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes slow-pulse {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+@layer components {
+  .container {
+    @apply px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl;
+  }
+  
+  .section {
+    @apply py-12 md:py-20;
+  }
+
+  .section-main-title {
+    @apply inline-block text-jabal-gold mb-4 tracking-wider text-sm;
+  }
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-jabal-muted;
+  }
+  
+  .section-subtitle {
+    @apply text-lg md:text-xl text-jabal-muted   max-w-xl;
+  }
+}
+
+/* Custom font families */
+@layer base {
+  html {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-jabal;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-jabal-gold/50 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-jabal-gold;
 }
