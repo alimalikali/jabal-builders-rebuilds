@@ -38,7 +38,7 @@ const Hero = () => {
       {/* Background Image with Overlay */}
 
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/40 backdrop-brightness-70 z-10"></div>
+        <div className="absolute inset-0 bg-black/70 backdrop-brightness-70 z-10"></div>
 
         {heroImages.map((image, index) => (
           <div

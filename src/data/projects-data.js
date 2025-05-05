@@ -5,7 +5,7 @@ export const projectsData = [
       category: 'Residential',
       location: 'New City, CA',
       year: '2023',
-      image: 'https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?ixlib=rb-4.0.3'
+      image: '/assets/images/hero/hero-banner-1.jpg'
     },
     {
       id: 2,
@@ -13,7 +13,7 @@ export const projectsData = [
       category: 'Commercial',
       location: 'Downtown Financial District',
       year: '2022',
-      image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3'
+      image: '/assets/images/hero/hero-banner-2.jpg'
     },
     {
       id: 3,
@@ -21,7 +21,7 @@ export const projectsData = [
       category: 'Residential',
       location: 'Coastal Heights',
       year: '2021',
-      image: 'https://images.unsplash.com/photo-1487252665478-49b61b47f302?ixlib=rb-4.0.3'
+      image: '/assets/images/hero/hero-banner-3.jpg'
     },
     {
       id: 4,
@@ -29,7 +29,7 @@ export const projectsData = [
       category: 'Hospitality',
       location: 'City Center',
       year: '2022',
-      image: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixlib=rb-4.0.3'
+      image: '/assets/images/hero/hero-banner-4.jpg'
     },
     {
       id: 5,
@@ -37,7 +37,7 @@ export const projectsData = [
       category: 'Commercial',
       location: 'East End District',
       year: '2020',
-      image: 'https://images.unsplash.com/photo-1487887235947-a955ef187fcc?ixlib=rb-4.0.3'
+      image: '/assets/images/hero/hero-banner-5.jpg'
     },
     {
       id: 6,
@@ -45,7 +45,7 @@ export const projectsData = [
       category: 'Commercial',
       location: 'Tech Park',
       year: '2023',
-      image: 'https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?ixlib=rb-4.0.3'
+      image: '/assets/images/hero/hero-banner-1.jpg'
     },
     {
       id: 7,
@@ -53,7 +53,7 @@ export const projectsData = [
       category: 'Residential',
       location: 'Harbor Bay',
       year: '2021',
-      image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3'
+      image: '/assets/images/hero/hero-banner-2.jpg'
     },
     {
       id: 8,
@@ -61,6 +61,6 @@ export const projectsData = [
       category: 'Hospitality',
       location: 'Arts District',
       year: '2022',
-      image: 'https://images.unsplash.com/photo-1487252665478-49b61b47f302?ixlib=rb-4.0.3'
+      image: '/assets/images/hero/hero-banner-3.jpg'
     }
   ];

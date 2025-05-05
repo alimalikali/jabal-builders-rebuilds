@@ -1,14 +1,16 @@
 // components/projects/ProjectsHero.tsx
 import React from 'react';
 import Image from 'next/image';
+import useScrollAnimation from '../ui/useScrollAnimation';
 
 const ProjectsHero = () => {
+  useScrollAnimation();
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28">
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-jabal/90 z-10"></div>
+        <div className="absolute inset-0 bg-jabal/70 z-10"></div>
         <Image
-          src="https://images.unsplash.com/photo-1487252665478-49b61b47f302?ixlib=rb-1.2.1"
+          src="/assets/images/banners/banner-3.jpg"
           alt="Jabal Projects"
           width={1000}
           height={1000}

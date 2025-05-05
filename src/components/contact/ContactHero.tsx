@@ -6,7 +6,7 @@ const ContactHero = () => {
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28">
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-jabal/40 z-10"></div>
+        <div className="absolute inset-0 bg-jabal/70 z-10"></div>
         <Image
           width={1770}
           height={1080}

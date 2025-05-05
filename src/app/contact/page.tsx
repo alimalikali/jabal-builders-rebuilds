@@ -5,8 +5,11 @@ import ContactHero from '@/components/contact/ContactHero';
 import ContactForm from '@/components/contact/ContactForm';
 import ContactInfo from '@/components/contact/ContactInfo';
 import ContactMap from '@/components/contact/ContactMap';
+import useScrollAnimation from '@/components/ui/useScrollAnimation';
+
 
 const Contact = () => {
+  useScrollAnimation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
