@@ -4,7 +4,6 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
-import Image from "next/image";
 
 const heroImages = [
   "/assets/images/hero/hero-banner-1.jpg",

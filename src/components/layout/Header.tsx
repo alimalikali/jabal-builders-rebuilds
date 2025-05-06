@@ -18,13 +18,6 @@ const navItems = [
 export default function Header() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  // const [isScrolled, setIsScrolled] = useState(false)
-
-  // useEffect(() => {
-  //   const handleScroll = () => setIsScrolled(window.scrollY > 50)
-  //   window.addEventListener('scroll', handleScroll)
-  //   return () => window.removeEventListener('scroll', handleScroll)
-  // }, [])
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto'
@@ -42,15 +35,6 @@ export default function Header() {
       <div className="container flex justify-between items-center relative z-50">
         {/* Logo */}
         <Link href="/" className="relative z-10" onClick={closeMenu}>
-          {/* <h1 className="text-white text-2xl font-bold">
-            <span className="text-jabal-gold">J</span>
-            <span className={`${isScrolled ? 'text-jabal-white' : ''}`}>B</span>.
-          </h1> */}
-          {/* <div className="flex items-center w-8 h-8 sm:w-10 sm:h-10 ">
-          <Image src="/assets/images/logo/logo-01.png" alt="Jabal Builders" width={40} height={40} className='w-full h-full object-contain'/>
-          </div> */}
-
-
 
           <div className='flex items-center flex-row gap-[1px] sm:gap-[2px] w-auto sm:w-[300px] h-[60px] overflow-hidden'>
             <div className="flex items-center sm:w-[40px] h-[50px] ">
