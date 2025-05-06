@@ -46,8 +46,20 @@ export default function Header() {
             <span className="text-jabal-gold">J</span>
             <span className={`${isScrolled ? 'text-jabal-white' : ''}`}>B</span>.
           </h1> */}
-          <div className="flex items-center w-8 h-8 sm:w-10 sm:h-10 ">
+          {/* <div className="flex items-center w-8 h-8 sm:w-10 sm:h-10 ">
           <Image src="/assets/images/logo/logo-01.png" alt="Jabal Builders" width={40} height={40} className='w-full h-full object-contain'/>
+          </div> */}
+
+
+
+          <div className='flex items-center flex-row gap-[1px] sm:gap-[2px] w-auto sm:w-[300px] h-[60px] overflow-hidden'>
+            <div className="flex items-center sm:w-[40px] h-[50px] ">
+              <Image src="/assets/images/logo/logo-01.png" alt="Jabal Builders" width={1000} height={1000} className='w-full h-full object-contain' />
+            </div>
+
+            <div className="flex items-center w-[150px] sm:w-[200px] h-[100px] ">
+              <Image src="/assets/images/logo/logo-04.png" alt="Jabal Builders" width={1000} height={1000} className='w-full h-full object-contain' />
+            </div>
           </div>
         </Link>
 
@@ -57,11 +69,9 @@ export default function Header() {
             <Link
               key={item.name}
               href={item.path}
-              className={`text-sm font-medium tracking-wide relative transition-all duration-300 ${
-                isActive(item.path) ? 'text-jabal-gold' : 'text-white'
-              } hover:text-jabal-gold after:content-[''] after:absolute after:w-full after:h-0.5 after:-bottom-1 after:left-0 after:bg-jabal-gold after:transition-transform after:duration-300 ${
-                isActive(item.path) ? 'after:scale-x-100' : 'after:scale-x-0'
-              } hover:after:scale-x-100`}
+              className={`text-sm font-medium tracking-wide relative transition-all duration-300 ${isActive(item.path) ? 'text-jabal-gold' : 'text-white'
+                } hover:text-jabal-gold after:content-[''] after:absolute after:w-full after:h-0.5 after:-bottom-1 after:left-0 after:bg-jabal-gold after:transition-transform after:duration-300 ${isActive(item.path) ? 'after:scale-x-100' : 'after:scale-x-0'
+                } hover:after:scale-x-100`}
             >
               {item.name}
             </Link>
@@ -87,9 +97,8 @@ export default function Header() {
 
         {/* Mobile Navigation Drawer */}
         <div
-          className={`fixed inset-0 z-40 lg:hidden transition-transform duration-500 ease-in-out  pb-2   ${
-            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+          className={`fixed inset-0 z-40 lg:hidden transition-transform duration-500 ease-in-out  pb-2   ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
         >
           {/* Blur Background */}
           <div className="absolute inset-0 bg-jabal/95 backdrop-blur-md z-0 min-h-screen" />
@@ -102,9 +111,8 @@ export default function Header() {
                   key={item.name}
                   href={item.path}
                   onClick={closeMenu}
-                  className={`text-xl font-medium transition-all duration-300 ${
-                    isActive(item.path) ? 'text-jabal-gold' : 'text-white'
-                  } hover:text-jabal-gold`}
+                  className={`text-xl font-medium transition-all duration-300 ${isActive(item.path) ? 'text-jabal-gold' : 'text-white'
+                    } hover:text-jabal-gold`}
                 >
                   {item.name}
                 </Link>

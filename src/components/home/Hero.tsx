@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import Image from "next/image";
 
 const heroImages = [
   "/assets/images/hero/hero-banner-1.jpg",
@@ -35,9 +36,8 @@ const Hero = () => {
         {heroImages.map((image, index) => (
           <div
             key={image}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              index === currentImageIndex ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? "opacity-100" : "opacity-0"
+              }`}
             style={{
               backgroundImage: `url(${image})`,
               backgroundSize: "cover",
@@ -56,10 +56,17 @@ const Hero = () => {
             "text-center sm:text-left slide-in"
           )}
         >
-          <span className="inline-block text-jabal-gold mb-3 tracking-wider text-xs sm:text-sm relative">
-            <span className="relative z-10">JABAL BUILDERS</span>
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-jabal-gold/30"></span>
-          </span>
+          {/* <div className='flex justify-center items-center mb-4'>
+            <div className="flex justify-start items-center h-[80px] w-[240px]">
+              <Image
+                src="/assets/images/logo/logo-02.png"
+                alt="Jabal Builders"
+                width={1000}
+                height={1000}
+                className='w-full h-full aspect-[1] object-contain'
+              />
+            </div>
+          </div> */}
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
             <span className="block text-jabal-muted">Crafting Excellence in</span>
