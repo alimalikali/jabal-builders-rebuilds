@@ -6,6 +6,7 @@ import ContactForm from '@/components/contact/ContactForm';
 import ContactInfo from '@/components/contact/ContactInfo';
 import ContactMap from '@/components/contact/ContactMap';
 import useScrollAnimation from '@/components/ui/useScrollAnimation';
+import Image from 'next/image';
 
 
 const Contact = () => {
@@ -93,6 +94,14 @@ const Contact = () => {
 
         <section className="section bg-jabal">
           <div className="container">
+            <div className='flex justify-center items-center my-12 flex-col gap-4'>
+            <div className='flex justify-center items-center h-[100px] w-[200px]'>
+                <Image src="/assets/images/logo/logo-01.png" alt="Jabal Builders" width={1000} height={1000} className='w-full h-full object-contain'/>
+              </div>
+              <div className='flex justify-center items-center h-[100px] w-[400px]'>
+                <Image src="/assets/images/logo/logo-04.png" alt="Jabal Builders" width={1000} height={1000} className='w-full h-full object-contain'/>
+              </div>
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <ContactForm
                 formData={formData}

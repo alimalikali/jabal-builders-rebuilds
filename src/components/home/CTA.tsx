@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 
@@ -37,6 +38,17 @@ const CTA = () => {
 
       <div className="container relative z-10">
         <div ref={ctaRef} className="text-center max-w-3xl mx-auto slide-in">
+          <div className='flex justify-center items-center'>
+              <div className="flex justify-center items-center h-[100px] w-[300px]">
+              <Image
+                src="/assets/images/logo/logo-02.png"
+                alt="Jabal Builders"
+                width={100}
+                height={100}
+                className='w-full h-full object-contain'
+              />
+            </div>
+          </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 relative inline-block  text-white">
             Ready to Start Your <span className="gold-gradient">Next Project</span>?
 

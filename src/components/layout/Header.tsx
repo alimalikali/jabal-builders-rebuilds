@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 
 const navItems = [
   { name: 'Home', path: '/' },
@@ -17,13 +18,13 @@ const navItems = [
 export default function Header() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  // const [isScrolled, setIsScrolled] = useState(false)
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  // useEffect(() => {
+  //   const handleScroll = () => setIsScrolled(window.scrollY > 50)
+  //   window.addEventListener('scroll', handleScroll)
+  //   return () => window.removeEventListener('scroll', handleScroll)
+  // }, [])
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto'
@@ -36,17 +37,16 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-jabal/90 backdrop-blur-md py-2 shadow-lg' : 'bg-jabal/20 backdrop-blur-md py-4'
-      }`}
+      className={`fixed w-full top-0 z-50 transition-all duration-300 bg-jabal/20 backdrop-blur-md py-4`}
     >
       <div className="container flex justify-between items-center relative z-50">
         {/* Logo */}
         <Link href="/" className="relative z-10" onClick={closeMenu}>
-          <h1 className="text-white text-2xl font-bold">
+          {/* <h1 className="text-white text-2xl font-bold">
             <span className="text-jabal-gold">J</span>
             <span className={`${isScrolled ? 'text-jabal-white' : ''}`}>B</span>.
-          </h1>
+          </h1> */}
+          <Image src="/assets/images/logo/logo-01.png" alt="Jabal Builders" width={40} height={40} />
         </Link>
 
         {/* Desktop Nav */}

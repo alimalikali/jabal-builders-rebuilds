@@ -23,7 +23,7 @@ const ProjectsCTA = () => {
 
           <div className="slide-in">
             <Image
-              src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixlib=rb-4.0.3"
+              src="/assets/images/hero/hero-banner-1.jpg"
               alt="Architectural Design"
               width={1000}
               height={1000}

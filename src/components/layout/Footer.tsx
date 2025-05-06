@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const Footer = () => {
@@ -15,7 +16,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Column 1 - Logo & About */}
           <div className="space-y-4">
-            <h1 className='text-2xl font-bold text-white'><span className='text-jabal-gold'>JABAL</span> BUILDERS</h1>
+            {/* <h1 className='text-2xl font-bold text-white'><span className='text-jabal-gold'>JABAL</span> BUILDERS</h1> */}
+            <Image src="/assets/images/logo/logo-04.png" alt="Jabal Builders" width={200} height={200} />
             <p className="text-sm text-jabal-muted mt-4 max-w-xs">
               Crafting architectural excellence and transforming spaces with precision, innovation, and timeless elegance.
             </p>
