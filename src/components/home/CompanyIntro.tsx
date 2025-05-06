@@ -3,9 +3,9 @@
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useFadeInOnView } from '../ui/useFadeInOnView';
+
 const CompanyIntro = () => {
-  const contentRef = useFadeInOnView<HTMLDivElement>();
+
 
 
   return (
@@ -13,7 +13,7 @@ const CompanyIntro = () => {
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center">
           {/* Left column with image */}
-          <div className="relative">
+          <div className="relative slide-in">
             <Image
               width={1770}
               height={1080}
@@ -28,7 +28,7 @@ const CompanyIntro = () => {
           </div>
           
           {/* Right column with content */}
-          <div ref={contentRef} className="animate-fadeInUp gap-4 flex flex-col lg:justify-start justify-center ">
+          <div className=" gap-2 flex flex-col lg:justify-start justify-center slide-in">
             <span className="section-main-title lg:text-left text-center ">ABOUT US</span>
             <h2 className="section-title text-white lg:text-left text-center">
               Building <span className="gold-gradient">Tomorrow's Landmarks</span> Today

@@ -1,10 +1,8 @@
 // components/projects/ProjectsHero.tsx
 import React from 'react';
 import Image from 'next/image';
-import useScrollAnimation from '../ui/useScrollAnimation';
 
 const ProjectsHero = () => {
-  useScrollAnimation();
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28">
       <div className="absolute inset-0 z-0">

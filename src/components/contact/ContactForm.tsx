@@ -2,7 +2,6 @@
 
 import { Button } from '@/components/ui/button';
 import React from 'react';
-import useScrollAnimation from '../ui/useScrollAnimation';
 
 interface ContactFormProps {
   formData: {
@@ -27,7 +26,6 @@ const ContactForm: React.FC<ContactFormProps> = ({
   handleChange,
   handleSubmit
 }) => {
-  useScrollAnimation();
   return (
     <div className="slide-in">
       <h2 className="text-2xl md:text-3xl font-bold mb-6 gold-gradient">Send Us a Message</h2>

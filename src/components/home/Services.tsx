@@ -1,75 +1,20 @@
-'use client'
 
 import { Button } from '@/components/ui/button';
+import { services } from '@/data/home-data';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
 
-const services = [
-  {
-    id: 1,
-    title: 'Architecture',
-    description: 'Innovative design solutions for residential, commercial, and institutional buildings.',
-    image: '/assets/images/hero/hero-banner-1.jpg',
-    link: '/services'
-  },
-  {
-    id: 2,
-    title: 'Construction',
-    description: 'End-to-end construction services with uncompromising quality and precise execution.',
-    image: '/assets/images/hero/hero-banner-2.jpg',
-    link: '/services'
-  },
-  {
-    id: 3,
-    title: 'Interior Design',
-    description: 'Creating beautiful, functional interior spaces that reflect your style and needs.',
-    image: '/assets/images/hero/hero-banner-3.jpg',
-    link: '/services'
-  }
-];
+
 
 const Services = () => {
-  const headingRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -10% 0px'
-      }
-    );
-
-    if (headingRef.current) {
-      observer.observe(headingRef.current);
-    }
-    
-    if (cardsRef.current) {
-      observer.observe(cardsRef.current);
-    }
-
-    return () => {
-      if (headingRef.current) {
-        observer.unobserve(headingRef.current);
-      }
-      if (cardsRef.current) {
-        observer.unobserve(cardsRef.current);
-      }
-    };
-  }, []);
 
   return (
     <section className="section bg-jabal-light">
-      <div className="container">
+      <div className="container flex flex-col items-center gap-12 md:gap-20">
         {/* Section heading */}
-        <div ref={headingRef} className="text-center max-w-3xl mx-auto mb-16 slide-in">
+        <div className="text-center max-w-3xl mx-auto  slide-in">
           <span className="section-main-title">OUR SERVICES</span>
           <h2 className="section-title text-jabal-muted">
             Comprehensive <span className="gold-gradient">Building Solutions</span>
@@ -80,7 +25,7 @@ const Services = () => {
         </div>
 
         {/* Services cards */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 slide-in">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 slide-in">
           {services.map((service) => (
             <div 
               key={service.id} 

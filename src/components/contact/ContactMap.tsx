@@ -1,9 +1,5 @@
 
-import useScrollAnimation from '../ui/useScrollAnimation';
-
-
 const ContactMap = () => {
-  useScrollAnimation();
   return (
     <section className="bg-jabal-light py-12">
       <div className="container">

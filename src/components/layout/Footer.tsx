@@ -17,7 +17,9 @@ const Footer = () => {
           {/* Column 1 - Logo & About */}
           <div className="space-y-4">
             {/* <h1 className='text-2xl font-bold text-white'><span className='text-jabal-gold'>JABAL</span> BUILDERS</h1> */}
-            <Image src="/assets/images/logo/logo-04.png" alt="Jabal Builders" width={200} height={200} />
+            <div className='w-[250px] h-[40px]'>
+            <Image src="/assets/images/logo/logo-04.png" alt="Jabal Builders" width={1000} height={1000} className='w-full h-full object-contain' />
+            </div>
             <p className="text-sm text-jabal-muted mt-4 max-w-xs">
               Crafting architectural excellence and transforming spaces with precision, innovation, and timeless elegance.
             </p>

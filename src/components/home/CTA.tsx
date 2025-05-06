@@ -3,47 +3,23 @@
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
 
 const CTA = () => {
-  const ctaRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -10% 0px'
-      }
-    );
 
-    if (ctaRef.current) {
-      observer.observe(ctaRef.current);
-    }
-
-    return () => {
-      if (ctaRef.current) {
-        observer.unobserve(ctaRef.current);
-      }
-    };
-  }, []);
 
   return (
     <section className="py-16 overflow-hidden">
       <div className="container relative z-10">
-        <div ref={ctaRef} className="text-center max-w-2xl mx-auto slide-in">
+        <div className="text-center max-w-2xl mx-auto slide-in">
           <div className='flex justify-center items-center mb-4'>
               <div className="flex justify-center items-center h-[80px] w-[240px]">
               <Image
                 src="/assets/images/logo/logo-02.png"
                 alt="Jabal Builders"
-                width={80}
-                height={80}
-                className='w-full h-full object-contain'
+                width={1000}
+                height={1000}
+                className='w-full h-full aspect-[1] object-contain'
               />
             </div>
           </div>

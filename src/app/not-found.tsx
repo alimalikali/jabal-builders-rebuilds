@@ -1,11 +1,10 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useEffect } from 'react';
 
 const NotFound = () => {
-  const router = useRouter();
 
   useEffect(() => {
     console.error(
@@ -21,12 +20,13 @@ const NotFound = () => {
         <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium">
           This page wandered off... and never came back.
         </p>
-        <Button
-          onClick={() => router.push('/')}
-          className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-6 py-3 rounded-xl shadow-md transition-all duration-200"
-        >
-          Take me home
-        </Button>
+        <Link href="/">
+          <Button
+            className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-6 py-3 rounded-xl shadow-md transition-all duration-200"
+          >
+            Take me home
+          </Button>
+        </Link>
       </div>
     </div>
   );

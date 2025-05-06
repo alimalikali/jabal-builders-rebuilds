@@ -1,8 +1,6 @@
 import Image from "next/image";
-import useScrollAnimation from "../ui/useScrollAnimation";
 
 const AboutHero = () => {
-    useScrollAnimation();
   return (
     <>
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28">

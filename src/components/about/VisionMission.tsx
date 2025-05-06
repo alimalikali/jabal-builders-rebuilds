@@ -1,10 +1,8 @@
-import useScrollAnimation from "../ui/useScrollAnimation";
 
 
 
 
 const VisionMission = () => {
-    useScrollAnimation();
     return (
     <section className="section bg-jabal">
       <div className="container">

@@ -1,10 +1,8 @@
 import Image from 'next/image';
-import useScrollAnimation from '../ui/useScrollAnimation';
 
 type TeamMember = { id: number, name: string, position: string, image: string };
 
 const OurTeam = ({ teamMembers }: { teamMembers: TeamMember[] }) => {
-  useScrollAnimation();
   return (
     <section className="section bg-jabal-light">
       <div className="container">

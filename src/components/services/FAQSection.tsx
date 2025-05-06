@@ -5,7 +5,7 @@ const FAQSection = () => {
   return (
     <section className="section bg-jabal">
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="slide-in">
             <span className="inline-block text-jabal-gold mb-4 tracking-wider text-sm">FAQs</span>
             <h2 className="section-title mb-6">

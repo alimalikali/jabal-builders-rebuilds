@@ -1,4 +1,3 @@
-import useScrollAnimation from "../ui/useScrollAnimation";
 
 type TimelineEvent = {
   year: string;
@@ -6,7 +5,6 @@ type TimelineEvent = {
 };
 
 const Timeline = ({ timelineEvents }: { timelineEvents: TimelineEvent[] }) => {
-  useScrollAnimation();
   return (
     <section className="section bg-jabal">
     <div className="container">
@@ -19,10 +17,10 @@ const Timeline = ({ timelineEvents }: { timelineEvents: TimelineEvent[] }) => {
         <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-jabal-gold/30 transform md:translate-x-px"></div>
         {timelineEvents.map((item, index) => (
           <div key={index} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} mb-12 relative`}>
-            <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:text-right md:pr-8 ' : 'md:pl-8'} mb-4 md:mb-0`}>
+            <div className={`md:w-1/2 pl-4 md:pl-0 ${index % 2 === 0 ? 'md:text-right md:pr-8 ' : 'md:pl-8'} mb-4 md:mb-0 `}>
               <div className="text-2xl font-bold text-jabal-gold">{item.year}</div>
             </div>
-            <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-jabal-gold rounded-full transform -translate-x-1.5 md:-translate-x-2 mt-2"></div>
+            <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-jabal-gold rounded-full transform -translate-x-1.5 md:-translate-x-2.2 mt-2"></div>
             <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pl-8' : 'md:pr-8 md:text-right'} pl-6 md:pl-0`}>
               {/* <p className="text-white text-lg">{item.title}</p> */}
               <p className="text-jabal-muted">{item.description}</p>

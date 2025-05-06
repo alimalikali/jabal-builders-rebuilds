@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useFadeInOnView } from "../ui/useFadeInOnView";
 import clsx from "clsx";
 
 const heroImages = [
@@ -15,7 +14,6 @@ const heroImages = [
 ];
 
 const Hero = () => {
-  const heroRef = useFadeInOnView<HTMLDivElement>();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -52,12 +50,10 @@ const Hero = () => {
       {/* Content */}
       <div className="relative container z-10 w-full px-4 sm:px-6 md:px-8 py-[100px] md:py-0">
         <div
-          ref={heroRef}
-          // className="max-w-2xl mx-auto transition-all duration-1000 transform opacity-0 translate-y-10 text-center sm:text-left"
           className={clsx(
             "max-w-2xl transition-all duration-1000 transform",
             "opacity-0 translate-y-10",
-            "text-center sm:text-left"
+            "text-center sm:text-left slide-in"
           )}
         >
           <span className="inline-block text-jabal-gold mb-3 tracking-wider text-xs sm:text-sm relative">

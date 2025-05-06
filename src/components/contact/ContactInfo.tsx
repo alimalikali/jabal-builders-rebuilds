@@ -1,8 +1,6 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
-import useScrollAnimation from '../ui/useScrollAnimation';
 
 const ContactInfo = () => {
-  useScrollAnimation();
   return (
     <div className="slide-in">
       <h2 className="text-2xl md:text-3xl font-bold mb-6 gold-gradient">Contact Information</h2>

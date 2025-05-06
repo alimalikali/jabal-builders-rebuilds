@@ -1,24 +1,11 @@
-"use client"
-import FAQSection from '@/components/services/FAQSection';
-import ProcessSection from '@/components/services/ProcessSection';
-import ServiceHero from '@/components/services/ServiceHero';
-import ServicesGrid from '@/components/services/ServicesGrid';
-import useScrollAnimation from '@/components/ui/useScrollAnimation';
+import ServicesClient from "@/components/services/Index";
+import { Metadata } from "next";
 
-const Services = () => {
-useScrollAnimation();
-  return (
-    <>
-
-      <main>
-        <ServiceHero />
-        <ServicesGrid />
-        <ProcessSection />
-        <FAQSection />
-      </main>
-
-    </>
-  );
+export const metadata: Metadata = {
+  title: "Services | Jabal Builders",
+  description: "Explore our comprehensive range of construction services, from residential to commercial and industrial projects.",
 };
 
-export default Services;
+export default function Services() {
+  return <ServicesClient />;
+}

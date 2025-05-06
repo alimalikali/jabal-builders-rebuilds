@@ -1,34 +1,10 @@
 'use client';
 
+import { testimonials } from '@/data/home-data';
 import { QuoteIcon } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-const testimonials = [
-  {
-    id: 1,
-    content:
-      'Working  with Jabal Builders was a seamless experience. Their attention to detail and commitment to quality exceeded our expectations. The team turned our architectural vision into reality with precision and artistry.',
-    author: 'Sarah Anderson',
-    position: 'Property Developer',
-    company: 'Urban Spaces Ltd.',
-  },
-  {
-    id: 2,
-    content:
-      "As a longtime client of Jabal Builders, I've consistently been impressed by their innovative designs and flawless execution. Their ability to understand and enhance our vision makes them our top choice for all construction projects.",
-    author: 'Michael Chen',
-    position: 'CEO',
-    company: 'Axiom Properties',
-  },
-  {
-    id: 3,
-    content:
-      'The expertise and professionalism of the Jabal team ensured our complex commercial project was delivered on time and within budget. Their collaborative approach made the entire process stress-free.',
-    author: 'Amira Hassan',
-    position: 'Director',
-    company: 'Skyline Ventures',
-  },
-];
+
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);

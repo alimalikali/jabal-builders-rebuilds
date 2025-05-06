@@ -1,76 +1,21 @@
 'use client'
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
+import { projects } from '@/data/home-data';
 
-const projects = [
-  {
-    id: 1,
-    title: 'Modern Residential Complex',
-    category: 'Residential',
-    image: '/assets/images/hero/hero-banner-1.jpg'
-  },
-  {
-    id: 2,
-    title: 'Corporate Headquarters',
-    category: 'Commercial',
-    image: '/assets/images/hero/hero-banner-2.jpg'
-  },
-  {
-    id: 3,
-    title: 'Luxury Villa Development',
-    category: 'Residential',
-    image: '/assets/images/hero/hero-banner-3.jpg'
-  },
-  {
-    id: 4,
-    title: 'Sustainable Urban Hotel',
-    category: 'Hospitality',
-    image: '/assets/images/hero/hero-banner-4.jpg'
-  }
-];
+
 
 const Projects = () => {
-  const headingRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -10% 0px'
-      }
-    );
 
-    if (headingRef.current) {
-      observer.observe(headingRef.current);
-    }
-
-    if (projectsRef.current) {
-      observer.observe(projectsRef.current);
-    }
-
-    return () => {
-      if (headingRef.current) {
-        observer.unobserve(headingRef.current);
-      }
-      if (projectsRef.current) {
-        observer.unobserve(projectsRef.current);
-      }
-    };
-  }, []);
 
   return (
     <section className="section bg-jabal">
       <div className="container">
         {/* Section heading */}
-        <div ref={headingRef} className="slide-in flex flex-col md:flex-row justify-between items-center md:items-end mb-12 ">
+        <div  className="slide-in flex flex-col md:flex-row justify-between items-center md:items-end mb-12  slide-in">
           <div className="mb-6 md:mb-0 text-center md:text-left">
             <span className="section-main-title md:text-left text-center">OUR PROJECTS</span>
             <h2 className="section-title mb-2 md:text-left text-center">
@@ -90,7 +35,7 @@ const Projects = () => {
         </div>
 
         {/* Projects grid */}
-        <div ref={projectsRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 slide-in">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 slide-in">
           {projects.map((project) => (
             <div
               key={project.id}

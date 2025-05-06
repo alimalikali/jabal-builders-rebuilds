@@ -1,8 +1,6 @@
 import Link from 'next/link';
-import useScrollAnimation from '../ui/useScrollAnimation';
 import { Button } from '../ui/button';
 const OfficeLocation = () => {
-  useScrollAnimation();
   return (
     <section className="section bg-jabal-light">
       <div className="container">
