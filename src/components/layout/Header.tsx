@@ -37,7 +37,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed w-full top-0 z-50 transition-all duration-300 bg-jabal/20 backdrop-blur-md py-4`}
+      className={`fixed w-full top-0 z-50 transition-all duration-300 bg-jabal/20 backdrop-blur-md py-2 sm:py-4`}
     >
       <div className="container flex justify-between items-center relative z-50">
         {/* Logo */}
@@ -46,7 +46,9 @@ export default function Header() {
             <span className="text-jabal-gold">J</span>
             <span className={`${isScrolled ? 'text-jabal-white' : ''}`}>B</span>.
           </h1> */}
-          <Image src="/assets/images/logo/logo-01.png" alt="Jabal Builders" width={40} height={40} />
+          <div className="flex items-center w-8 h-8 sm:w-10 sm:h-10 ">
+          <Image src="/assets/images/logo/logo-01.png" alt="Jabal Builders" width={40} height={40} className='w-full h-full object-contain'/>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
@@ -85,7 +87,7 @@ export default function Header() {
 
         {/* Mobile Navigation Drawer */}
         <div
-          className={`fixed inset-0 z-40 lg:hidden transition-transform duration-500 ease-in-out    ${
+          className={`fixed inset-0 z-40 lg:hidden transition-transform duration-500 ease-in-out  pb-2   ${
             isMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
@@ -93,7 +95,7 @@ export default function Header() {
           <div className="absolute inset-0 bg-jabal/95 backdrop-blur-md z-0 min-h-screen" />
 
           {/* Drawer Content */}
-          <div className="relative flex flex-col min-h-screen pt-20 pb-6 px-6 z-10">
+          <div className="relative flex flex-col min-h-[80svh] pt-20 pb-6 px-6 z-10">
             <nav className="flex flex-col space-y-6 mt-8">
               {navItems.map((item) => (
                 <Link

@@ -138,14 +138,14 @@
   }
 
   .section-main-title {
-    @apply inline-block text-jabal-gold mb-4 tracking-wider text-sm;
+    @apply inline-block text-jabal-gold mb-4 tracking-wider text-sm lg:text-base;
   }
   .section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-jabal-muted;
+    @apply md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-jabal-muted text-2xl ;
   }
   
   .section-subtitle {
-    @apply text-lg md:text-xl text-jabal-muted   max-w-xl;
+    @apply  md:text-xl text-jabal-muted   max-w-xl text-sm ;
   }
 }
 

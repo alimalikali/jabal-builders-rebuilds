@@ -70,13 +70,13 @@ const Projects = () => {
     <section className="section bg-jabal">
       <div className="container">
         {/* Section heading */}
-        <div ref={headingRef} className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 slide-in">
-          <div className="mb-6 md:mb-0">
-            <span className="section-main-title">OUR PROJECTS</span>
-            <h2 className="section-title mb-2 ">
+        <div ref={headingRef} className="slide-in flex flex-col md:flex-row justify-between items-center md:items-end mb-12 ">
+          <div className="mb-6 md:mb-0 text-center md:text-left">
+            <span className="section-main-title md:text-left text-center">OUR PROJECTS</span>
+            <h2 className="section-title mb-2 md:text-left text-center">
               Featured <span className="gold-gradient">Works</span>
             </h2>
-            <p className=" section-subtitle">
+            <p className=" section-subtitle md:text-left text-center">
               Explore our diverse portfolio of innovative architectural designs and construction projects.
             </p>
           </div>
