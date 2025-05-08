@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from "react";
-import { useScrollDirection } from "@/app/hooks/useScrollDirection";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
 
 // MixBlendMode type for TypeScript
 export type MixBlendModeType = 

@@ -15,6 +15,7 @@ interface HeroSectionProps {
   ctaLink?: string;
   overlay?: boolean;
   height?: string;
+  showIndicator?: boolean;
 }
 
 const HeroSection = ({
@@ -25,7 +26,8 @@ const HeroSection = ({
   ctaText = "Get a Quote",
   ctaLink = "/contact",
   overlay = true,
-  height = "h-screen"
+  height = "h-screen",
+  showIndicator = false
 }: HeroSectionProps) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const heroRef = useRef<HTMLDivElement>(null);
@@ -72,7 +74,7 @@ const HeroSection = ({
       ref={heroRef}
       className={`relative ${height} w-full flex items-center justify-center overflow-hidden`}
       data-cursor-section="hero"
-      data-cursor-text="Scroll &#8595;"
+      data-cursor-text="&#8595;"
     >
       <motion.div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -99,12 +101,13 @@ const HeroSection = ({
         <HeroSubtitle subtitle={subtitle} />
 
         {showCta && <HeroCTA text={ctaText} link={ctaLink} />}
-        <div className="relative">
-          <div className="absolute -bottom-40 left-0 w-full h-full flex justify-center items-center">
-          <HeroScrollIndicator />
+        {showIndicator && (
+          <div className="relative">
+            <div className="absolute -bottom-40 left-0 w-full h-full flex justify-center items-center">
+              <HeroScrollIndicator />
+            </div>
           </div>
-            
-        </div>
+        )}
       </motion.div>
     </motion.div>
   );

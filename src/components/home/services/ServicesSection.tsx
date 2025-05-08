@@ -1,76 +1,72 @@
-"use client"
 import AnimatedSection from "@/components/animations/AnimatedSection";
-import ParallaxSection from "@/components/parallax/ParallaxSection";
 import { Button } from "@/components/ui/button";
-import { services } from "@/config/services";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { services } from "@/config/servicesPage";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
-import ServiceCard from "./ServiceCard";
-
 export default function ServicesSection() {
-  const containerRef = useRef<HTMLElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-  
-  // Parallax effects
-  const titleY = useTransform(scrollYProgress, [0, 0.2, 1], [100, 0, 0]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.2, 1], [0, 1, 1]);
-  
-  // const animations = [
-  //   "slide-left",
-  //   "slide-up",
-  //   "slide-up",
-  //   "slide-right"
-  // ];
-  
   return (
-    <section ref={containerRef} className="py-20 sm:py-24 bg-muted overflow-hidden relative">
-      {/* Background elements */}
-      <ParallaxSection speed={0.15} className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary/5 blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-secondary/5 blur-3xl"></div>
-      </ParallaxSection>
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div 
-          className="text-center mb-12 sm:mb-16"
-          style={{ 
-            y: titleY,
-            opacity: titleOpacity
-          }}
-        >
-          <h2 className="centered-section-heading">Our Services</h2>
-          <p className="text-center text-gray-600 max-w-3xl mx-auto">
-            We provide comprehensive construction solutions tailored to your specific needs,
-            ensuring quality, innovation, and excellence at every step.
-          </p>
-        </motion.div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+    <section className="py-20 bg-muted">
+      <div className="container mx-auto px-4">
+        <AnimatedSection animation="fade" className="mb-16">
+          <h2 className="centered-section-heading">What We Offer</h2>
+        </AnimatedSection>
+
+        <div className="space-y-24">
           {services.map((service, index) => (
-            // <AnimatedSection
-            //   key={service.id}
-            //   animation={isMobile ? "slide-up" : animations[index % animations.length] as any}
-            //   delay={isMobile ? index * 0.1 : 0.2}
-            //   className="h-full w-full"
-            // >
-              <ServiceCard key={service.id} service={service} index={index} />
-            // </AnimatedSection>
+            <div
+              key={service.title}
+              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-16 items-center`}
+            >
+              {/* Service Image/Icon */}
+              <AnimatedSection
+                animation={index % 2 === 0 ? "slide-right" : "slide-left"}
+                className="w-full lg:w-1/2 flex flex-col items-center aspect-[15/10] p-2 lg:p-4"
+              >
+                <div className="w-full h-full overflow-hidden rounded-2xl shadow-lg">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      width={1000}
+                      height={1000}
+                      className="w-full h-full object-cover"
+                    />
+                </div>
+              </AnimatedSection>
+
+
+              {/* Service Details */}
+              <AnimatedSection
+                animation={index % 2 === 0 ? "slide-left" : "slide-right"}
+                className="w-full lg:w-1/2"
+              >
+                <h3 className="text-2xl md:text-3xl font-bold text-primary font-poppins mb-4">{service.title}</h3>
+                <p className="text-gray-600 mb-6">{service.description}</p>
+
+                <h4 className="font-bold text-lg mb-4">What we provide:</h4>
+                <ul className="space-y-3 mb-8">
+                  {service.features.map((feature, i) => (
+                    <AnimatedSection
+                      key={feature}
+                      delay={i * 0.1}
+                      animation="slide-up"
+                      className="flex items-start"
+                    >
+                      <span className="text-secondary mr-2">✓</span>
+                      <span>{feature}</span>
+                    </AnimatedSection>
+                  ))}
+                </ul>
+
+                <Link href="/contact">
+                  <Button className="bg-secondary hover:bg-secondary/90">
+                    Inquire About This Service <ArrowRight size={16} className="ml-2" />
+                  </Button>
+                </Link>
+              </AnimatedSection>
+            </div>
           ))}
         </div>
-        
-        <AnimatedSection animation="slide-up" delay={0.5} className="text-center mt-10 sm:mt-12">
-          <Link href="/services">
-            <Button className="bg-secondary hover:bg-secondary/90">
-              View All Services <ArrowRight size={16} className="ml-2" />
-            </Button>
-          </Link>
-        </AnimatedSection>
       </div>
     </section>
   );

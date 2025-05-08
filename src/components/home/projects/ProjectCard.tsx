@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { FeaturedProjectType } from "@/app/types/projects";
-import { useHydrated } from "@/app/hooks/useHydrated";
+import { FeaturedProjectType } from "@/types/projects";
+import { useHydrated } from "@/hooks/useHydrated";
 import Image from "next/image";
 
 interface ProjectCardProps {

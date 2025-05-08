@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { featuredProjects } from "@/config/projects";
 import ProjectCard from "./ProjectCard";
-
+import AnimatedSection from "@/components/animations/AnimatedSection";
 const FeaturedProjects = () => {
   return (
-    <section className="py-20 bg-white">
+    <AnimatedSection animation="slide-up" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="centered-section-heading">Featured Projects</h2>
         <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
@@ -28,7 +28,7 @@ const FeaturedProjects = () => {
           </Link>
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 };
 

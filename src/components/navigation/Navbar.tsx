@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -7,43 +8,59 @@ import NavLink from "./NavLink";
 import { usePathname } from "next/navigation";
 import { navItems } from '@/config/navigation';
 import Image from 'next/image';
+import { useIsMobile } from '@/hooks/use-mobile';
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname]);
 
   return (
-    <nav 
+    <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-3 sm:py-4'
       }`}
       aria-label="Main navigation"
     >
-      <div className="fluid-container flex justify-between items-center px-4 sm:px-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="flex items-center py-2 z-20">
-        <div className="w-[250px] h-[80px] ">
-          <Image src="/assets/images/logo/logo-02.png" alt="Jabal Builders" width={1000} height={1000} className="w-full h-full object-contain aspect-auto" />
-        </div>
+        <Link href="/" className="flex items-center gap-3 z-30 relative">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 relative">
+            <Image
+              src="/assets/images/logo/logo-01.png"
+              alt="Jabal Builders"
+              fill
+              className="object-contain"
+            />
+          </div>
+          {!isMobile && (
+            <div className="w-[200px] h-10 relative hidden md:block">
+              <Image
+                src="/assets/images/logo/logo-04.png"
+                alt="Jabal Builders"
+                fill
+                className="object-contain"
+              />
+            </div>
+          )}
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-2 lg:space-x-8">
-          {navItems.map(item => (
+        <div className="hidden md:flex items-center space-x-6">
+          {navItems.map((item) => (
             <NavLink
               key={item.name}
               href={item.path}
@@ -54,15 +71,17 @@ const Navbar = () => {
             </NavLink>
           ))}
           <Link href="/contact">
-            <Button className="bg-secondary hover:bg-secondary/90 text-white px-4 py-2 min-h-[44px]">
+            <Button className="bg-secondary hover:bg-secondary/90 text-white px-5 py-2 min-h-[44px]">
               Get a Quote
             </Button>
           </Link>
         </div>
 
-        {/* Mobile Navigation Toggle */}
+        {/* Mobile Menu Toggle */}
         <button
-          className={`md:hidden ${scrolled || isMenuOpen ? 'text-primary' : 'text-white'} p-2 min-h-[44px] min-w-[44px] flex items-center justify-center z-20`}
+          className={`md:hidden p-2 min-h-[44px] min-w-[44px] flex items-center justify-center z-30 transition-colors ${
+            scrolled || isMenuOpen ? 'text-primary' : 'text-white'
+          }`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-label="Toggle navigation menu"
@@ -71,26 +90,26 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation Menu */}
-      <div 
-        className={`md:hidden absolute top-0 left-0 w-full bg-white shadow-md transform transition-transform duration-300 ease-in-out ${
-          isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-        } pt-16 pb-4 z-10`}
+      {/* Mobile Navigation Drawer */}
+      <div
+        className={`fixed inset-x-0 top-0 z-20 bg-white transition-all duration-300 ease-in-out transform ${
+          isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
+        } pt-20 pb-8 shadow-md md:hidden`}
       >
-        <div className="fluid-container flex flex-col space-y-1 px-4">
-          {navItems.map(item => (
+        <div className="px-6 flex flex-col gap-2">
+          {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.path}
+              onClick={() => setIsMenuOpen(false)}
               className={`text-primary hover:text-secondary transition-colors px-4 py-3 rounded-md ${
                 pathname === item.path ? 'bg-gray-100 text-secondary font-medium' : ''
               }`}
-              onClick={() => setIsMenuOpen(false)}
             >
               {item.name}
             </Link>
           ))}
-          <div className="pt-2">
+          <div className="pt-3">
             <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
               <Button className="bg-secondary hover:bg-secondary/90 text-white w-full min-h-[44px]">
                 Get a Quote

@@ -9,7 +9,7 @@ import Image from "next/image";
 
 const MediaShowcase = () => {
   return (
-    <section className="py-20 bg-white">
+    <AnimatedSection animation="slide-up" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="centered-section-heading">Media Showcase</h2>
         <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
@@ -29,7 +29,7 @@ const MediaShowcase = () => {
                   className="w-full h-full object-cover"
                 >
                   
-                  <source src="/assets/videos/project-preview.mp4" type="video/mp4" />
+                  <source src="/assets/videos/video3.mp4" type="video/mp4" />
 
                 </video>
               </AspectRatio>
@@ -50,7 +50,7 @@ const MediaShowcase = () => {
           </AnimatedSection>
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 };
 

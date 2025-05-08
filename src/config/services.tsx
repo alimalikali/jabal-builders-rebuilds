@@ -1,5 +1,5 @@
 
-import { ServiceType } from "@/app/types/services";
+import { ServiceType } from "@/types/services";
 import { Building, Hammer, LayoutGrid, Wrench } from "lucide-react";
 
 export const services: ServiceType[] = [

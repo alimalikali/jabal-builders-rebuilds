@@ -1,5 +1,5 @@
 "use client"
-import { useIsMobile } from "@/app/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 import AnimatedSection from "@/components/animations/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { testimonials } from "@/config/testimonials";

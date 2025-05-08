@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail } from "lucide-react";
 const ContactInfo = () => {
   return (
     <div>
-      <h4 className="text-xl font-bold font-poppins mb-4">Contact Us</h4>
+      <h4 className="text-xl font-bold font-poppins mb-4 text-secondary/70">Contact Us</h4>
       <ul className="space-y-4">
         <li className="flex items-start">
           <MapPin size={20} className="mr-2 mt-1 text-secondary" />

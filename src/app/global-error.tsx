@@ -1,5 +1,6 @@
 'use client'
 
+import './globals.css';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { AlertTriangle } from "lucide-react"

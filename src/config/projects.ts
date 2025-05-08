@@ -1,5 +1,5 @@
 
-import { FeaturedProjectType } from "@/app/types/projects";
+import { FeaturedProjectType } from "@/types/projects";
 
 export const featuredProjects: FeaturedProjectType[] = [
   {

@@ -1,3 +1,5 @@
+import './globals.css';
+
 export default function Loading() {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-4 animate-pulse space-y-6">

@@ -1,26 +1,30 @@
 "use client"
+import AnimatedSection from "@/components/animations/AnimatedSection";
 import { galleryItems } from "@/config/gallery";
+import { useIsMobile } from "@/hooks/use-mobile";
+import dynamic from 'next/dynamic';
 import GalleryTitle from "./GalleryTitle";
-import DesktopGallery from "./DesktopGallery";
-import MobileGallery from "./MobileGallery";
-import { useIsMobile } from "@/app/hooks/use-mobile";
+const NoSSR = dynamic(() => import('./MobileGallery'), { ssr: false })
+const NoSSRDesktop = dynamic(() => import('./DesktopGallery'), { ssr: false })
+
+
+
 
 export const GallerySection = () => {
   const isMobile = useIsMobile();
 
   return (
-    <section
-      className="py-20 sm:py-24 md:py-28 bg-white overflow-hidden texture-overlay relative"  >
+    <AnimatedSection animation="fade" className="py-20 sm:py-24 md:py-28 bg-white overflow-hidden texture-overlay relative"  >
       <div className="fluid-container px-4 sm:px-6 md:px-8">
         <GalleryTitle />
 
         {isMobile ? (
-          <MobileGallery galleryItems={galleryItems} />
+          <NoSSR galleryItems={galleryItems} />
         ) : (
-          <DesktopGallery galleryItems={galleryItems} />
+          <NoSSRDesktop galleryItems={galleryItems} />
         )}
       </div>
-    </section>
+    </AnimatedSection>
   );
 };
 

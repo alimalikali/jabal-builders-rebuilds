@@ -2,7 +2,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { CursorText } from "@/components/cursor/CursorText";
 import { CursorScrollIndicator } from "@/components/cursor/CursorScrollIndicator";
-import useCursor from "@/app/hooks/useCursor";
+import useCursor from "@/hooks/useCursor";
 
 const CustomCursor = () => {
   const { 

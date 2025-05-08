@@ -1,7 +1,7 @@
 "use client"
 import { cn } from "@/lib/utils";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { GalleryItemType } from "@/app/types/gallery";
+import { GalleryItemType } from "@/types/gallery";
 import Link from "next/link";
 
 interface ProjectCardProps {

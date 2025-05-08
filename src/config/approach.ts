@@ -7,7 +7,7 @@ export const approachSteps = [
     icon: "🔍",
     color: "bg-amber-500",
     lightColor: "bg-amber-100",
-    textColor: "text-amber-900"
+    textColor: "text-amber-900",
   },
   {
     id: 2,

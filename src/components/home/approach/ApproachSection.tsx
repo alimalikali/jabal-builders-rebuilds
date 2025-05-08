@@ -1,6 +1,6 @@
 "use client"
 import AnimatedSection from "@/components/animations/AnimatedSection";
-import { useIsMobile } from "@/app/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import DesktopApproach from "./DesktopApproach";

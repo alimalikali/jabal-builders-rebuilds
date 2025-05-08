@@ -1,5 +1,5 @@
 
-import { TestimonialType } from "@/app/types/testimonials";
+import { TestimonialType } from "@/types/testimonials";
 
 export const testimonials: TestimonialType[] = [
   {

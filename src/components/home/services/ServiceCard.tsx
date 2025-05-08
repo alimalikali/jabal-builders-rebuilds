@@ -1,6 +1,6 @@
 "use client"  
-import { useIsMobile } from "@/app/hooks/use-mobile";
-import { ServiceType } from "@/app/types/services";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { ServiceType } from "@/types/services";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";

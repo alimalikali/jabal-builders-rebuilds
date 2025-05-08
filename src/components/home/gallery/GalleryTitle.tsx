@@ -1,10 +1,8 @@
 "use client"
 import { motion } from "framer-motion";
-import { useHydrated } from "@/app/hooks/useHydrated";
 
 const GalleryTitle = () => {
 
-  const isMounted = useHydrated();
 
   return (
     <motion.div
@@ -14,8 +12,8 @@ const GalleryTitle = () => {
       viewport={{ once: true, amount: 0.3 }}
       className="text-center mb-12 sm:mb-16"
     >
-      <h2 className={`centered-section-heading reveal ${isMounted ? 'active' : ''}`} style={{ animationDelay: '0.2s' }}>Our Signature Projects</h2>
-      <p className={`text-center text-gray-600 max-w-3xl mx-auto mb-8 sm:mb-12 reveal ${isMounted ? 'active' : ''}`} style={{ animationDelay: '0.2s' }}>
+      <h2 className={`centered-section-heading `}>Our Signature Projects</h2>
+      <p className={`text-center text-gray-600 max-w-3xl mx-auto mb-8 sm:mb-12 `}>
         Explore our portfolio of exceptional architectural projects that showcase our commitment to innovation, quality, and design excellence.
       </p>
     </motion.div>

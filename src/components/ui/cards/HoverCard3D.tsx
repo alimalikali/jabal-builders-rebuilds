@@ -2,7 +2,7 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { useIsMobile } from "@/app/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface HoverCard3DProps {
   children: React.ReactNode;
