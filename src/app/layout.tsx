@@ -36,11 +36,10 @@ export default function RootLayout({
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                 <CustomCursor />
                 <ScrollAnimations />
-                <Navbar/>
+                {/* <Navbar/> */}
                 <main className={`flex-grow overflow-x-hidden`}>
                     {children}
                 </main>
-                <Footer />
             </body>
         </html>
     );
