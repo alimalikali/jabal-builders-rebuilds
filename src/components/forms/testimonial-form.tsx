@@ -25,8 +25,7 @@ export function TestimonialForm() {
       content: "",
       rating: 5,
       image: "",
-      accentColor: "#f97316",
-      bgColor: "#fff7ed",
+      bgColor: "amber",
     },
   })
 
@@ -141,23 +140,6 @@ export function TestimonialForm() {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="accentColor"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Accent Color</FormLabel>
-                <div className="flex gap-2">
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <div className="h-10 w-10 rounded-md border" style={{ backgroundColor: field.value }} />
-                </div>
-                <FormDescription>Hex color code (e.g., #f97316)</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
 
           <FormField
             control={form.control}
@@ -165,13 +147,21 @@ export function TestimonialForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Background Color</FormLabel>
-                <div className="flex gap-2">
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
-                    <Input {...field} />
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a background color" />
+                    </SelectTrigger>
                   </FormControl>
-                  <div className="h-10 w-10 rounded-md border" style={{ backgroundColor: field.value }} />
-                </div>
-                <FormDescription>Hex color code (e.g., #fff7ed)</FormDescription>
+                  <SelectContent>
+                    <SelectItem value="amber">Amber</SelectItem>
+                    <SelectItem value="sky">Sky</SelectItem>
+                    <SelectItem value="purple">Purple</SelectItem>
+                    <SelectItem value="pink">Pink</SelectItem>
+                    <SelectItem value="emerald">Emerald</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormDescription>Background color of the testimonial card</FormDescription>
                 <FormMessage />
               </FormItem>
             )}

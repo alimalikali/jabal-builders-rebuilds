@@ -20,10 +20,7 @@ export const testimonialSchema = z.object({
   content: z.string().min(10, { message: "Content must be at least 10 characters" }),
   rating: z.coerce.number().min(1).max(5, { message: "Rating must be between 1 and 5" }),
   image: z.string().url({ message: "Valid image URL is required" }),
-  accentColor: z.string().regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, {
-    message: "Valid hex color code is required",
-  }),
-  bgColor: z.string().regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, {
+  bgColor: z.enum(["amber", "sky", "purple", "pink", "emerald"], {
     message: "Valid hex color code is required",
   }),
 })

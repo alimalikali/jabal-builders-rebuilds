@@ -1,5 +1,5 @@
 # Jabal Builders – Excellence in Architecture & Construction  
-**Building Tomorrow’s Landmarks Today**
+**Building Tomorrow's Landmarks Today**
 
 ![Jabal Builders Logo](https://github.com/alimalikali/jabal-builders/blob/main/public/assets/images/logo.jpg)
 
@@ -9,6 +9,17 @@
 Welcome to **Jabal Builders**, a premier construction and architectural firm dedicated to **innovation, sustainability, and excellence**. Our website serves as a gateway to explore our cutting-edge projects, services, and our bold vision for the future of the construction industry.
 
 🔗 **[Live Demo: Coming Soon]**
+
+---
+
+## 📚 Documentation
+
+For detailed documentation, please refer to the following guides:
+
+- [API Documentation](docs/API.md) - Complete API reference and usage
+- [Component Documentation](docs/COMPONENTS.md) - UI components and usage
+- [Setup Guide](docs/SETUP.md) - Installation and configuration
+- [Deployment Guide](docs/DEPLOYMENT.md) - Deployment instructions
 
 ---
 
@@ -45,7 +56,7 @@ Welcome to **Jabal Builders**, a premier construction and architectural firm ded
 ---
 
 ## 🎯 Key Messages
-- **"Building Tomorrow’s Landmarks Today"** – Our commitment to visionary architecture.
+- **"Building Tomorrow's Landmarks Today"** – Our commitment to visionary architecture.
 - **30+ Years of Innovation** – A legacy of sustainable and strong construction.
 - **End-to-End Solutions** – From design to execution, we bring ideas to life.
 
@@ -59,7 +70,7 @@ Welcome to **Jabal Builders**, a premier construction and architectural firm ded
 
 ---
 
-## 🔧 Setup & Installation
+## 🔧 Quick Start
 
 1. **Clone the repository**:
     ```bash
@@ -79,6 +90,8 @@ Welcome to **Jabal Builders**, a premier construction and architectural firm ded
 4. **Open in browser**:
     Visit `http://localhost:3000` to view the application locally.
 
+For detailed setup instructions, please refer to the [Setup Guide](docs/SETUP.md).
+
 ---
 
 ## 📁 Environment Variables Setup
@@ -88,3 +101,35 @@ Create a `.env` file in the root of your project and add the following:
 # Resend Email API Configuration
 RESEND_API_KEY=your_resend_api_key_here
 EMAIL_TO=recipient_email@gmail.com
+```
+
+For a complete list of environment variables, please refer to the [Setup Guide](docs/SETUP.md).
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please read our [Contributing Guidelines](docs/CONTRIBUTING.md) before submitting pull requests.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 📞 Support
+
+For support, please:
+1. Check the [documentation](docs/)
+2. Open an [issue](https://github.com/yourusername/jabal-builders/issues)
+3. Contact our support team
+
+---
+
+## 🙏 Acknowledgments
+
+- All contributors who have helped shape this project
+- The open-source community for their invaluable tools and resources
+- Our clients for their trust and feedback
