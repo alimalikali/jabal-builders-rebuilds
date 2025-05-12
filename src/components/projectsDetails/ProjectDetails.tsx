@@ -1,11 +1,11 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ProjectDetails as ProjectDetailsType } from '@/types/projects';
+import { Project } from '@/types/projects';
 import Link from 'next/link';
 
 interface ProjectDetailsProps {
-  project: ProjectDetailsType;
+  project: Project;
 }
 
 export const ProjectDetails = ({ project }: ProjectDetailsProps) => {
@@ -35,6 +35,10 @@ export const ProjectDetails = ({ project }: ProjectDetailsProps) => {
             
             <div className="space-y-3 sm:space-y-4">
               <div>
+                <p className="text-muted-foreground text-sm">COMPLETION</p>
+                <p className="font-medium">{project.year}</p>
+              </div>
+              <div>
                 <p className="text-muted-foreground text-sm">CATEGORY</p>
                 <p className="font-medium">{project.category}</p>
               </div>
@@ -45,10 +49,6 @@ export const ProjectDetails = ({ project }: ProjectDetailsProps) => {
               <div>
                 <p className="text-muted-foreground text-sm">LOCATION</p>
                 <p className="font-medium">{project.location}</p>
-              </div>
-              <div>
-                <p className="text-muted-foreground text-sm">COMPLETION</p>
-                <p className="font-medium">{project.completionDate}</p>
               </div>
               <div>
                 <p className="text-muted-foreground text-sm">AREA</p>

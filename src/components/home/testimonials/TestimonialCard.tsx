@@ -14,6 +14,24 @@ interface TestimonialCardProps {
 const TestimonialCard = ({ testimonial, index }: TestimonialCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
+
+  function getBgColor(color: string) {
+    switch (color) {
+      case "amber":
+        return "bg-amber-100";
+      case "emerald":
+        return "bg-emerald-100";
+      case "sky":
+        return "bg-sky-100";
+      case "purple":
+        return "bg-purple-100";
+      case "pink":
+        return "bg-pink-100";
+      default:
+        return "bg-gray-100";
+    }
+  }
+
   return (
     <motion.div
       whileHover={{ scale: 1.03, y: -5 }}
@@ -33,7 +51,7 @@ const TestimonialCard = ({ testimonial, index }: TestimonialCardProps) => {
       >
         {/* Background hover gradient */}
         <motion.div
-          className={`absolute inset-0 bg-gradient-to-t ${testimonial.bgColor} opacity-0`}
+          className={`absolute inset-0 bg-gradient-to-t ${getBgColor(testimonial.bgColor)} opacity-0`}
           animate={{ opacity: isHovered ? 1 : 0, height: isHovered ? "100%" : "0%" }}
           transition={{ duration: 0.5 }}
           style={{ originY: 1 }}
@@ -70,7 +88,7 @@ const TestimonialCard = ({ testimonial, index }: TestimonialCardProps) => {
           {/* User Info */}
           <div className="flex items-center gap-3">
             <motion.div
-              className={cn("relative", testimonial.accentColor)}
+              className={cn("relative")}
               animate={{
                 scale: isHovered ? 1.1 : 1,
                 rotate: isHovered ? 5 : 0,

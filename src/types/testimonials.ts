@@ -1,11 +1,10 @@
 
 export interface TestimonialType {
-  id: number;
+  id: string;
   name: string;
   role: string;
   content: string;
   rating: number;
   image: string;
-  accentColor: string;
   bgColor: string;
 }

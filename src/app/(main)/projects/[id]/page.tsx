@@ -1,68 +1,87 @@
-import { notFound } from 'next/navigation';
-import { projectsData } from '@/config/projectsPage';
 import { ProjectHero } from '@/components/projectsDetails/ProjectHero';
 import { ProjectDetails } from '@/components/projectsDetails/ProjectDetails';
-import { RelatedProjects } from '@/components/projectsDetails/RelatedProjects';
+import { notFound } from 'next/navigation';
 
-// Solution 1: Using async/await with proper typing
 export default async function ProjectDetailPage(props: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await props.params;
-  const project = projectsData.find(p => p.id === id);
+  const params = await props.params;
+  try {
 
-  if (!project) {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/projects/${params.id}`, {
+      next: { revalidate: 3600 } // Revalidate every hour
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      notFound();
+    }
+
+    const project = await response.json();
+
+    if (!project || !project._id) {
+      notFound();
+    }
+
+    return (
+      <>
+        <ProjectHero project={project} />
+        <ProjectDetails project={project} />
+      </>
+    );
+  } catch (error) {
+    console.error('Page: Error in ProjectDetailPage:', error);
     notFound();
   }
-
-  return (
-    <>
-      <ProjectHero project={project} />
-      <ProjectDetails project={project} />
-      <RelatedProjects projects={projectsData} currentProjectId={project.id} />
-    </>
-  );
 }
-
-// Solution 2: Alternative using React's use hook (for client components)
-/*
-import { use } from 'react';
-
-export default function ProjectDetailPage(props: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = use(props.params);
-  const project = projectsData.find(p => p.id === id);
-
-  if (!project) {
-    notFound();
-  }
-
-  return (
-    <>
-      <ProjectHero project={project} />
-      <ProjectDetails project={project} />
-      <RelatedProjects projects={projectsData} currentProjectId={project.id} />
-    </>
-  );
-}
-*/
-
-// Generate static paths for SSG
-export async function generateStaticParams() {
-  return projectsData.map((project) => ({
-    id: project.id,
-  }));
-}
-
-// Optional: Generate metadata
 export async function generateMetadata(props: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await props.params;
-  const project = projectsData.find(p => p.id === id);
-  return {
-    title: project?.title || 'Project Not Found',
-    description: project?.description,
-  };
+  const params = await props.params;
+  try {
+    console.log('Metadata: Fetching project with ID:', params.id);
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/projects/${params.id}`, {
+      next: { revalidate: 3600 }
+    });
+
+    console.log('Metadata: API Response status:', response.status);
+
+    // Handle API errors
+    if (!response.ok) {
+      console.error('Metadata: API Error:', response.status, response.statusText);
+      return {
+        title: 'Project Not Found',
+        description: 'The requested project could not be found.',
+      };
+    }
+
+    const project = await response.json();
+    console.log('Metadata: Project data received:', project ? 'Yes' : 'No');
+
+    // Validate project data
+    if (!project || !project._id) {
+      console.error('Metadata: Invalid project data:', project);
+      return {
+        title: 'Project Not Found',
+        description: 'The requested project could not be found.',
+      };
+    }
+
+    return {
+      title: project.title,
+      description: project.description,
+      openGraph: {
+        title: project.title,
+        description: project.description,
+        images: project.images?.[0] ? [project.images[0]] : [],
+      },
+    };
+  } catch (error) {
+    console.error('Metadata: Error in generateMetadata:', error);
+    return {
+      title: 'Project Not Found',
+      description: 'The requested project could not be found.',
+    };
+  }
 }

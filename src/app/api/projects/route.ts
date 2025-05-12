@@ -36,10 +36,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create new project
-    const project = new Project({
-      ...result.data,
-      completionDate: new Date(result.data.completionDate),
-    })
+    const project = new Project(result.data)
 
     await project.save()
 

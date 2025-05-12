@@ -1,6 +1,6 @@
 "use client"
 import AnimatedSection from "@/components/animations/AnimatedSection";
-import { galleryItems } from "@/config/gallery";
+import { galleryItems } from "@/config/home";
 import { useIsMobile } from "@/hooks/use-mobile";
 import dynamic from 'next/dynamic';
 import GalleryTitle from "./GalleryTitle";

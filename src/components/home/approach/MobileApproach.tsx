@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import AnimatedSection from "@/components/animations/AnimatedSection";
-import { approachSteps } from "@/config/approach";
+import { approachSteps } from "@/config/home";
 
 const MobileApproach = () => {
   const containerRef = useRef<HTMLDivElement>(null);

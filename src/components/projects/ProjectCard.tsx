@@ -5,6 +5,7 @@ import { useHydrated } from '@/hooks/useHydrated';
 import { Project } from '@/types/projects';
 import Image from 'next/image';
 import Link from 'next/link';
+
 interface ProjectCardProps {
   project: Project;
   index: number;
@@ -15,9 +16,11 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
   const animationStyle = isHydrated ? { animationDelay: `${0.1 * (index % 3)}s` } : {};
 
+  const id = project._id;
+
   return (
     <Link
-      href={`/projects/${project.id}`}
+      href={`/projects/${id}`}
       className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all"
       style={animationStyle}
       prefetch={false}
@@ -38,6 +41,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           {project.year}
         </div>
       </div>
+      
       <div className="p-4 sm:p-6">
         <div className="flex justify-between items-start mb-2">
           <h3 className="text-lg sm:text-xl font-bold line-clamp-1">{project.title}</h3>

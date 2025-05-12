@@ -1,15 +1,17 @@
-export const projectsData = [
+import { Project } from "@/types/projects";
+
+export const projectsData: Project[] = [
     {
-      id: "1",
+      _id: "1",
       title: "Azure Heights Tower",
       location: "New York, USA",
       category: "Commercial",
       description: "A stunning 42-story commercial tower in the heart of downtown, featuring state-of-the-art sustainable design and cutting-edge technology integration.",
       imageSrc: "https://images.unsplash.com/photo-1459767129954-1b1c1f9b9ace?auto=format&fit=crop&w=1920&q=80",
-      videoSrc: "/assets/videos/video1.mp4",
+      videoSrc: "",
       architect: "Morgan & Associates",
-      completionDate: "2023",
       area: "85,000 sq m",
+      isFeatured: true,
       year: 2023,
       features: [
         "LEED Platinum certification",
@@ -19,16 +21,16 @@ export const projectsData = [
       ]
     },
     {
-      id: "2",
+      _id: "2",
       title: "Crystal Pavilion",
       location: "London, UK",
       category: "Public",
       description: "An award-winning cultural center with a distinctive crystal-inspired design, housing exhibition spaces, performance venues, and community facilities.",
       imageSrc: "https://images.unsplash.com/photo-1439337153520-7082a56a81f4?auto=format&fit=crop&w=1920&q=80",
-      videoSrc: "/assets/videos/video2.mp4",
+      videoSrc: "",
       architect: "Foster & Williams",
-      completionDate: "2022",
       area: "32,000 sq m",
+      isFeatured: true,
       year: 2022,
       features: [
         "Acoustically optimized auditorium",
@@ -38,16 +40,16 @@ export const projectsData = [
       ]
     },
     {
-      id: "3",
+      _id: "3",
       title: "Skyline Residences",
       location: "Dubai, UAE",
       category: "Residential",
       description: "A luxury residential complex offering panoramic city views, premium amenities, and innovative living spaces designed for modern urban lifestyles.",
       imageSrc: "https://images.unsplash.com/photo-1497604401993-f2e922e5cb0a?auto=format&fit=crop&w=1920&q=80",
-      videoSrc: "/assets/videos/video3.mp4",
+      videoSrc: "",
       architect: "Al Masri International",
-      completionDate: "2024",
       area: "120,000 sq m",
+      isFeatured: false,
       year: 2024,
       features: [
         "Infinity pool with city views",
@@ -57,16 +59,16 @@ export const projectsData = [
       ]
     },
     {
-      id: "4",
+      _id: "4",
       title: "White Cube Gallery",
       location: "Tokyo, Japan",
       category: "Cultural",
       description: "A minimalist art gallery designed to showcase contemporary works in a pure, unobtrusive environment that plays with light and space.",
       imageSrc: "https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&w=1920&q=80",
-      videoSrc: "/assets/videos/video1.mp4",
+      videoSrc: "",
       architect: "Tanaka Design Studio",
-      completionDate: "2021",
       area: "9,800 sq m",
+      isFeatured: false,
       year: 2021,
       features: [
         "Specialized lighting systems",
@@ -76,16 +78,16 @@ export const projectsData = [
       ]
     },
     {
-      id: "5",
+      _id: "5",
       title: "Emerald Plaza",
       location: "Singapore",
       category: "Mixed Use",
       description: "A vibrant mixed-use development combining retail, office, and residential spaces in a sustainable vertical community.",
       imageSrc: "https://images.unsplash.com/photo-1459767129954-1b1c1f9b9ace?auto=format&fit=crop&w=1920&q=80",
-      videoSrc: "/assets/videos/video2.mp4",
+      videoSrc: "",
       architect: "Lim & Partners",
-      completionDate: "2023",
       area: "95,000 sq m",
+      isFeatured: false,
       year: 2023,
       features: [
         "Urban farming terraces",

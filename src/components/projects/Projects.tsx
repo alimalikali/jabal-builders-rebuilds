@@ -1,7 +1,8 @@
 'use client';
 
 import { Button } from "@/components/ui/button";
-import { categories, projectsData } from '@/config/projectsPage';
+import { categories } from '@/config/projectsPage';
+import { Project } from "@/types/projects";
 import { useEffect, useState } from 'react';
 import HeroSection from '../ui/hero/HeroSection';
 import { FilterTabs } from './FilterTabs';
@@ -14,7 +15,8 @@ interface ProjectsProps {
 export const Projects = ({ initialCategory = "All" }: ProjectsProps) => {
   const [activeCategory, setActiveCategory] = useState(initialCategory);
   const [isMobile, setIsMobile] = useState(false);
-  
+  const [projects, setProjects] = useState<Project[]>([]);
+
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -28,11 +30,34 @@ export const Projects = ({ initialCategory = "All" }: ProjectsProps) => {
 
   // Debugging: Log the filtered projects
   const filteredProjects = activeCategory === "All" 
-    ? projectsData 
-    : projectsData.filter(project => {
+    ? projects 
+    : projects.filter(project => {
         const matches = project.category === activeCategory;
         return matches;
       });
+
+
+
+      useEffect(() => {
+        const fetchProjects = async () => {
+          try {
+            const response = await fetch("/api/projects");
+            if (!response.ok) {
+              throw new Error('Failed to fetch projects');
+            }
+            const data = await response.json();
+            setProjects(data);
+          } catch (error) {
+    
+            console.error("Error fetching projects:", error);
+          } 
+        };
+        fetchProjects();
+      }, []);
+
+
+      
+       
 
   
   return (
@@ -63,7 +88,7 @@ export const Projects = ({ initialCategory = "All" }: ProjectsProps) => {
           {filteredProjects.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {filteredProjects.map((project, index) => (
-                <ProjectCard key={project.id} project={project} index={index} />
+                <ProjectCard key={index} project={project} index={index} />
               ))}
             </div>
           ) : (

@@ -2,7 +2,7 @@
 
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useHydrated } from '@/hooks/useHydrated';
-import { ProjectDetails } from '@/types/projects';
+import { Project } from '@/types/projects';
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import Image from 'next/image';
@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 interface ProjectHeroProps {
-  project: ProjectDetails;
+  project: Project;
 }
 
 export const ProjectHero = ({ project }: ProjectHeroProps) => {

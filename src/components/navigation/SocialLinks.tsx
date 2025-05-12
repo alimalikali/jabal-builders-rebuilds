@@ -1,5 +1,5 @@
 
-import { socialLinks } from "@/config/social";
+import { socialLinks } from "@/config/navigation";
 
 const SocialLinks = () => {
   return (

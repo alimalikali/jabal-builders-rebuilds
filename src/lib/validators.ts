@@ -3,16 +3,15 @@ import { z } from "zod"
 export const projectSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters" }),
   location: z.string().min(3, { message: "Location is required" }),
-  category: z.string().min(2, { message: "Category is required" }),
+  category: z.enum(["Commercial", "Residential", "Public", "Cultural", "Mixed Use"], { message: "Category is required" }),
   description: z.string().min(10, { message: "Description must be at least 10 characters" }),
   imageSrc: z.string().url({ message: "Valid image URL is required" }),
   videoSrc: z.string().url({ message: "Valid video URL is required" }).optional().or(z.literal("")),
   architect: z.string().min(3, { message: "Architect name is required" }),
-  completionDate: z.string().refine((date) => !isNaN(Date.parse(date)), {
-    message: "Valid date is required",
-  }),
   area: z.coerce.number().positive({ message: "Area must be a positive number" }),
   features: z.array(z.string()).min(1, { message: "At least one feature is required" }),
+  year: z.coerce.number().positive({ message: "Year must be a positive number" }),
+  isFeatured: z.boolean().optional(),
 })
 
 export const testimonialSchema = z.object({

@@ -13,7 +13,7 @@ export async function GET() {
     return NextResponse.json(testimonials, { status: 200 })
   } catch (error) {
     console.error("Error fetching testimonials:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    return NextResponse.json({ error: "Failed to fetch testimonials" }, { status: 500 })
   }
 }
 

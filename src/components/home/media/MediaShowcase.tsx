@@ -3,7 +3,7 @@ import { ZoomIn } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 import AnimatedSection from "@/components/animations/AnimatedSection";  
-import { showcaseImages } from "@/config/showcase";
+import { showcaseImages } from "@/config/home";
 import Image from "next/image";
 
 

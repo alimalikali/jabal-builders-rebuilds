@@ -1,5 +1,5 @@
 import AnimatedSection from "@/components/animations/AnimatedSection";
-import { approachSteps } from "@/config/approach";
+import { approachSteps } from "@/config/home";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useTransform } from "framer-motion";

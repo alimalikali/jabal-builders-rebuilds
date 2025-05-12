@@ -1,21 +1,19 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { CalendarIcon, Plus, X } from "lucide-react"
-import { format } from "date-fns"
-import { projectSchema, type ProjectFormValues } from "@/lib/validators"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
-import { Calendar } from "@/components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
+import { projectSchema, type ProjectFormValues } from "@/lib/validators"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Switch } from "../ui/switch"
+import { Plus, X } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { Select, SelectValue, SelectTrigger, SelectItem, SelectContent } from "@/components/ui/select"
 
 export function ProjectForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -28,14 +26,15 @@ export function ProjectForm() {
     defaultValues: {
       title: "",
       location: "",
-      category: "",
+      category: "Commercial",
       description: "",
       imageSrc: "",
       videoSrc: "",
       architect: "",
-      completionDate: new Date().toISOString(),
       area: 0,
       features: [],
+      year: 0,
+      isFeatured: false,
     },
   })
 
@@ -57,7 +56,7 @@ export function ProjectForm() {
 
   async function onSubmit(data: ProjectFormValues) {
     setIsLoading(true)
-
+    console.log(data)
     try {
       const response = await fetch("/api/projects", {
         method: "POST",
@@ -130,7 +129,25 @@ export function ProjectForm() {
               <FormItem>
                 <FormLabel>Category</FormLabel>
                 <FormControl>
-                  <Input placeholder="Commercial" {...field} />
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormItem>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a category" />
+                          <SelectContent>
+                            <SelectItem value="Commercial">Commercial</SelectItem>
+                            <SelectItem value="Residential">Residential</SelectItem>
+                            <SelectItem value="Public">Public</SelectItem>
+                            <SelectItem value="Cultural">Cultural</SelectItem>
+                            <SelectItem value="Mixed Use">Mixed Use</SelectItem>
+                          </SelectContent>
+                        </SelectTrigger>
+                      </FormControl>
+                    </FormItem>
+                  </Select>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -153,31 +170,13 @@ export function ProjectForm() {
 
           <FormField
             control={form.control}
-            name="completionDate"
+            name="year"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel>Completion Date</FormLabel>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <Button
-                        variant={"outline"}
-                        className={cn("w-full pl-3 text-left font-normal", !field.value && "text-muted-foreground")}
-                      >
-                        {field.value ? format(new Date(field.value), "PPP") : <span>Pick a date</span>}
-                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                      </Button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={new Date(field.value)}
-                      onSelect={(date) => field.onChange(date?.toISOString())}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
+                <FormLabel>Year</FormLabel>
+                <FormControl>
+                  <Input type="number" placeholder="2023" {...field} />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -294,6 +293,32 @@ export function ProjectForm() {
             </FormItem>
           )}
         />
+
+        <FormField
+          control={form.control}
+          name="isFeatured"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4 max-w-xl">
+              <div className="space-y-0.5">
+                <FormLabel className="text-base">Featured Project</FormLabel>
+                <FormDescription>
+                  Featured projects will be highlighted on the homepage
+                </FormDescription>
+              </div>
+              <FormControl>
+                <div className="flex items-center gap-2 w-[80px]">
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    className="data-[state=checked]:bg-primary w-full"
+                  />
+                </div>
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
+
 
         <Button type="submit" disabled={isLoading}>
           {isLoading ? "Creating..." : "Create Project"}

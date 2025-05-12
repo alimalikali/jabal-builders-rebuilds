@@ -6,7 +6,6 @@ export interface ITestimonial extends Document {
   content: string
   rating: number
   image: string
-  accentColor: string
   bgColor: string
   createdAt: Date
   updatedAt: Date
@@ -19,8 +18,7 @@ const TestimonialSchema: Schema = new Schema(
     content: { type: String, required: true },
     rating: { type: Number, required: true, min: 1, max: 5 },
     image: { type: String, required: true },
-    accentColor: { type: String, required: true, default: "#f97316" },
-    bgColor: { type: String, required: true, default: "#fff7ed" },
+    bgColor: { type: String, required: true, default: "sky" },
   },
   { timestamps: true },
 )
