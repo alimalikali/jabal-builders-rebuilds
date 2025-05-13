@@ -55,59 +55,8 @@
   /* Custom cursor styles - only applied on non-touch devices */
   @media (hover: hover) {
     body {
-      cursor: none;
-    }
-
-    /* Make native elements work with custom cursor */
-    button,
-    a,
-    input,
-    textarea,
-    select,
-    .hoverable {
-      cursor: none;
-    }
-
-    .custom-cursor {
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: #fff;
-      transition: transform 0.1s ease;
-      mix-blend-mode: difference;
-      will-change: transform;
-    }
-
-    .custom-cursor.expanded {
-      @apply bg-secondary opacity-70;
-      width: 64px;
-      height: 64px;
-      transition: transform 0.15s ease-out, width 0.3s ease-out, height 0.3s ease-out;
-    }
-
-    /* Section-specific cursor styles */
-    .custom-cursor.cursor-hero {
-      @apply bg-white border-2 border-white size-[40px];
-    }
-
-    .custom-cursor.cursor-projects {
-      @apply bg-white mix-blend-difference;
-    }
-
-    .custom-cursor.cursor-testimonials {
-      @apply bg-secondary mix-blend-normal;
-    }
-
-    .cursor-text {
-      @apply text-black dark:text-white text-xs font-medium absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 whitespace-nowrap;
-    }
-
-    .cursor-scroll-indicator {
-      @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
-      color: currentColor;
+      /* cursor: none; */
+      overflow-x: hidden;
     }
 
     /* Change link selection color to yellow */

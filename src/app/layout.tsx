@@ -1,5 +1,5 @@
 import ScrollAnimations from "@/components/animations/ScrollAnimations";
-import CustomCursor from "@/components/cursor/CustomCursor";
+// import CustomCursor from "@/components/cursor/CustomCursor";
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -33,7 +33,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <CustomCursor />
+                {/* <CustomCursor /> */}
                 <ScrollAnimations />
                 <main className={`flex-grow overflow-x-hidden`}>
                     {children}

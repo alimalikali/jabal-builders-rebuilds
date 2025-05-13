@@ -31,9 +31,9 @@ export function ProjectForm() {
       imageSrc: "",
       videoSrc: "",
       architect: "",
-      area: 0,
+      area: 10000,
       features: [],
-      year: 0,
+      year: 2025,
       isFeatured: false,
     },
   })
@@ -101,7 +101,7 @@ export function ProjectForm() {
               <FormItem>
                 <FormLabel>Project Title</FormLabel>
                 <FormControl>
-                  <Input placeholder="Modern Office Building" {...field} />
+                  <Input placeholder="Modern Office Building" {...field} className="placeholder:text-gray-300" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -115,7 +115,7 @@ export function ProjectForm() {
               <FormItem>
                 <FormLabel>Location</FormLabel>
                 <FormControl>
-                  <Input placeholder="New York, NY" {...field} />
+                  <Input placeholder="New York, NY" {...field} className="placeholder:text-gray-300" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -136,17 +136,17 @@ export function ProjectForm() {
                     <FormItem>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a category" />
-                          <SelectContent>
-                            <SelectItem value="Commercial">Commercial</SelectItem>
-                            <SelectItem value="Residential">Residential</SelectItem>
-                            <SelectItem value="Public">Public</SelectItem>
-                            <SelectItem value="Cultural">Cultural</SelectItem>
-                            <SelectItem value="Mixed Use">Mixed Use</SelectItem>
-                          </SelectContent>
+                          <SelectValue />
                         </SelectTrigger>
                       </FormControl>
                     </FormItem>
+                    <SelectContent>
+                      <SelectItem value="Commercial">Commercial</SelectItem>
+                      <SelectItem value="Residential">Residential</SelectItem>
+                      <SelectItem value="Public">Public</SelectItem>
+                      <SelectItem value="Cultural">Cultural</SelectItem>
+                      <SelectItem value="Mixed Use">Mixed Use</SelectItem>
+                    </SelectContent>
                   </Select>
                 </FormControl>
                 <FormMessage />
@@ -161,7 +161,7 @@ export function ProjectForm() {
               <FormItem>
                 <FormLabel>Architect</FormLabel>
                 <FormControl>
-                  <Input placeholder="John Smith" {...field} />
+                  <Input placeholder="John Smith" {...field} className="placeholder:text-gray-300" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -175,7 +175,11 @@ export function ProjectForm() {
               <FormItem className="flex flex-col">
                 <FormLabel>Year</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="2023" {...field} />
+                  <Input 
+                    type="number" 
+                    {...field} 
+                    onChange={(e) => field.onChange(Number(e.target.value))}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -191,7 +195,6 @@ export function ProjectForm() {
                 <FormControl>
                   <Input
                     type="number"
-                    placeholder="5000"
                     {...field}
                     onChange={(e) => field.onChange(Number(e.target.value))}
                   />
@@ -208,7 +211,7 @@ export function ProjectForm() {
               <FormItem>
                 <FormLabel>Image URL</FormLabel>
                 <FormControl>
-                  <Input placeholder="https://example.com/image.jpg" {...field} />
+                  <Input placeholder="https://example.com/image.jpg" {...field} className="placeholder:text-gray-300" />
                 </FormControl>
                 <FormDescription>Main image for the project</FormDescription>
                 <FormMessage />
@@ -223,7 +226,7 @@ export function ProjectForm() {
               <FormItem>
                 <FormLabel>Video URL (Optional)</FormLabel>
                 <FormControl>
-                  <Input placeholder="https://example.com/video.mp4" {...field} />
+                  <Input placeholder="https://example.com/video.mp4" {...field} className="placeholder:text-gray-300" />
                 </FormControl>
                 <FormDescription>Optional video for the project</FormDescription>
                 <FormMessage />
@@ -239,7 +242,7 @@ export function ProjectForm() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea placeholder="Describe the project in detail..." className="min-h-32" {...field} />
+                <Textarea placeholder="Describe the project in detail..." className="min-h-32 placeholder:text-gray-300 " {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -263,6 +266,7 @@ export function ProjectForm() {
                       addFeature()
                     }
                   }}
+                  className="placeholder:text-gray-300"
                 />
                 <Button type="button" onClick={addFeature} size="sm">
                   <Plus className="h-4 w-4" />
@@ -317,8 +321,6 @@ export function ProjectForm() {
             </FormItem>
           )}
         />
-
-
 
         <Button type="submit" disabled={isLoading}>
           {isLoading ? "Creating..." : "Create Project"}

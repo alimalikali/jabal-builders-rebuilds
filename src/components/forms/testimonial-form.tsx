@@ -76,7 +76,7 @@ export function TestimonialForm() {
               <FormItem>
                 <FormLabel>Client Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="John Doe" {...field} />
+                  <Input placeholder="John Doe" {...field} className="placeholder:text-gray-300" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -90,7 +90,7 @@ export function TestimonialForm() {
               <FormItem>
                 <FormLabel>Client Role</FormLabel>
                 <FormControl>
-                  <Input placeholder="CEO, XYZ Company" {...field} />
+                  <Input placeholder="CEO, XYZ Company" {...field} className="placeholder:text-gray-300" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -132,7 +132,7 @@ export function TestimonialForm() {
               <FormItem>
                 <FormLabel>Client Image URL</FormLabel>
                 <FormControl>
-                  <Input placeholder="https://example.com/image.jpg" {...field} />
+                  <Input placeholder="https://example.com/image.jpg" {...field} className="placeholder:text-gray-300" />
                 </FormControl>
                 <FormDescription>Profile image of the client</FormDescription>
                 <FormMessage />
@@ -175,7 +175,7 @@ export function TestimonialForm() {
             <FormItem>
               <FormLabel>Testimonial Content</FormLabel>
               <FormControl>
-                <Textarea placeholder="Write the client's testimonial here..." className="min-h-32" {...field} />
+                <Textarea placeholder="Write the client's testimonial here..." className="min-h-32 placeholder:text-gray-300" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
