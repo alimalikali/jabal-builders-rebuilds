@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build --legacy-peer-deps",
     "start": "next start",
     "lint": "next lint",
     "migrate": "ts-node scripts/migrateDb.js"
@@ -27,7 +27,7 @@
     "@radix-ui/react-toast": "^1.2.13",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "date-fns": "^3.6.0",
+    "date-fns": "^4.1.0",
     "framer-motion": "^12.10.0",
     "jose": "^6.0.11",
     "lucide-react": "^0.507.0",
