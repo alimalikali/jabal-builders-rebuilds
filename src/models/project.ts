@@ -9,8 +9,9 @@ export interface IProject extends Document {
   videoSrc?: string
   architect: string
   isFeatured: boolean
+  isActive: boolean
   area: string
-  year: number
+  completionDate: Date
   features: string[]
   createdAt: Date
   updatedAt: Date
@@ -26,14 +27,12 @@ const ProjectSchema: Schema = new Schema(
     videoSrc: { type: String },
     architect: { type: String, required: true },
     area: { type: String, required: true },
-    year: { type: Number, required: true },
+    completionDate: { type: Date, required: true },
     features: [{ type: String }],
+    isActive: { type: Boolean, default: true },
     isFeatured: { type: Boolean, default: false },
   },
   { timestamps: true }
 )
-
-// Add index for better query performance
-ProjectSchema.index({ _id: 1 });
 
 export default mongoose.models.Project || mongoose.model<IProject>("Project", ProjectSchema)

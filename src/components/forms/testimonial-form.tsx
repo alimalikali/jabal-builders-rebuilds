@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -11,12 +11,17 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Switch } from "@radix-ui/react-switch"
 
-export function TestimonialForm() {
+interface TestimonialFormProps {
+  id?: string | null
+}
+
+export function TestimonialForm({ id }: TestimonialFormProps) {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const { toast } = useToast()
-
+  const isEditing = !!id
   const form = useForm<TestimonialFormValues>({
     resolver: zodResolver(testimonialSchema),
     defaultValues: {
@@ -26,15 +31,41 @@ export function TestimonialForm() {
       rating: 5,
       image: "",
       bgColor: "amber",
+      isActive: true,
     },
   })
+
+    // Fetch project data if editing
+    useEffect(() => {
+      if (isEditing) {
+        const fetchTestimonial = async () => {
+          try {
+            const response = await fetch(`/api/testimonials/${id}`)
+            if (!response.ok) throw new Error("Failed to fetch testimonial")
+            const data = await response.json()
+            form.reset(data)
+          } catch (error) {
+            toast({
+              title: "Error",
+              description: "Failed to load testimonial data",
+              variant: "destructive",
+            })
+            router.push("/admin/testimonials")
+          }
+        }
+        fetchTestimonial()
+      }
+    }, [id, form, router, toast, isEditing])
 
   async function onSubmit(data: TestimonialFormValues) {
     setIsLoading(true)
 
     try {
-      const response = await fetch("/api/testimonials", {
-        method: "POST",
+      const url = isEditing ? `/api/testimonials/${id}` : "/api/testimonials"
+      const method = isEditing ? "PATCH" : "POST"
+
+      const response = await fetch(url, {
+        method,
         headers: {
           "Content-Type": "application/json",
         },
@@ -48,11 +79,11 @@ export function TestimonialForm() {
       }
 
       toast({
-        title: "Testimonial created",
-        description: "The testimonial has been created successfully",
+        title: isEditing ? "Testimonial updated" : "Testimonial created",
+        description: `Your testimonial has been ${isEditing ? "updated" : "created"} successfully`,
       })
 
-      router.push("/admin/dashboard")
+      router.push("/admin/testimonials")
       router.refresh()
     } catch (error: any) {
       toast({
@@ -64,6 +95,7 @@ export function TestimonialForm() {
       setIsLoading(false)
     }
   }
+
 
   return (
     <Form {...form}>
@@ -105,7 +137,7 @@ export function TestimonialForm() {
                 <FormLabel>Rating</FormLabel>
                 <Select
                   onValueChange={(value) => field.onChange(Number.parseInt(value))}
-                  defaultValue={field.value.toString()}
+                  value={field.value.toString()}
                 >
                   <FormControl>
                     <SelectTrigger>
@@ -147,7 +179,7 @@ export function TestimonialForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Background Color</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select onValueChange={field.onChange} value={field.value}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Select a background color" />
@@ -182,8 +214,23 @@ export function TestimonialForm() {
           )}
         />
 
+        <FormField
+          control={form.control}
+          name="isActive"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Active</FormLabel>
+              <FormControl>
+                <Switch checked={field.value} onCheckedChange={field.onChange} />
+                  </FormControl>
+              <FormDescription>Toggle to activate or deactivate the testimonial</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <Button type="submit" disabled={isLoading}>
-          {isLoading ? "Creating..." : "Create Testimonial"}
+          {isLoading ? (isEditing ? "Updating..." : "Creating...") : (isEditing ? "Update Testimonial" : "Create Testimonial")}
         </Button>
       </form>
     </Form>

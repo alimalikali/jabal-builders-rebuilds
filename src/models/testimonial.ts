@@ -7,6 +7,7 @@ export interface ITestimonial extends Document {
   rating: number
   image: string
   bgColor: string
+  isActive: boolean
   createdAt: Date
   updatedAt: Date
 }
@@ -19,6 +20,7 @@ const TestimonialSchema: Schema = new Schema(
     rating: { type: Number, required: true, min: 1, max: 5 },
     image: { type: String, required: true },
     bgColor: { type: String, required: true, default: "sky" },
+    isActive: { type: Boolean, default: true },
   },
   { timestamps: true },
 )

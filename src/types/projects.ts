@@ -11,6 +11,6 @@ export interface Project {
   isFeatured: boolean
   area: string
   features: string[]
-  year: number;
-
+  completionDate: Date;
+  isActive: boolean;
 }

@@ -36,7 +36,7 @@ export const ProjectDetails = ({ project }: ProjectDetailsProps) => {
             <div className="space-y-3 sm:space-y-4">
               <div>
                 <p className="text-muted-foreground text-sm">COMPLETION</p>
-                <p className="font-medium">{project.year}</p>
+                <p className="font-medium">{new Date(project.completionDate).getFullYear()}</p>
               </div>
               <div>
                 <p className="text-muted-foreground text-sm">CATEGORY</p>

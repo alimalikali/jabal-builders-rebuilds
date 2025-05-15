@@ -38,7 +38,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           />
         </AspectRatio>
         <div className="absolute top-4 right-4 bg-secondary text-primary text-xs font-bold px-2 py-1 rounded">
-          {project.year}
+          {new Date(project.completionDate).getFullYear()}
         </div>
       </div>
       

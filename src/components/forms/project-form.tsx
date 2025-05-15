@@ -2,24 +2,33 @@
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
+import { cn } from "@/lib/utils"
 import { projectSchema, type ProjectFormValues } from "@/lib/validators"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Switch } from "../ui/switch"
-import { Plus, X } from "lucide-react"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { format } from "date-fns"
+import { CalendarIcon, Plus, X } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
-import { Select, SelectValue, SelectTrigger, SelectItem, SelectContent } from "@/components/ui/select"
+import { Switch } from "../ui/switch"
 
-export function ProjectForm() {
+interface ProjectFormProps {
+  id?: string | null
+}
+
+export function ProjectForm({ id }: ProjectFormProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [featureInput, setFeatureInput] = useState("")
   const router = useRouter()
   const { toast } = useToast()
+  const isEditing = !!id
 
   const form = useForm<ProjectFormValues>({
     resolver: zodResolver(projectSchema),
@@ -33,10 +42,33 @@ export function ProjectForm() {
       architect: "",
       area: 10000,
       features: [],
-      year: 2025,
+      completionDate: new Date(),
       isFeatured: false,
+      isActive: true,
     },
   })
+
+  // Fetch project data if editing
+  useEffect(() => {
+    if (isEditing) {
+      const fetchProject = async () => {
+        try {
+          const response = await fetch(`/api/projects/${id}`)
+          if (!response.ok) throw new Error("Failed to fetch project")
+          const data = await response.json()
+          form.reset(data)
+        } catch (error) {
+          toast({
+            title: "Error",
+            description: "Failed to load project data",
+            variant: "destructive",
+          })
+          router.push("/admin/projects")
+        }
+      }
+      fetchProject()
+    }
+  }, [id, form, router, toast, isEditing])
 
   const features = form.watch("features")
 
@@ -56,10 +88,12 @@ export function ProjectForm() {
 
   async function onSubmit(data: ProjectFormValues) {
     setIsLoading(true)
-    console.log(data)
     try {
-      const response = await fetch("/api/projects", {
-        method: "POST",
+      const url = isEditing ? `/api/projects/${id}` : "/api/projects"
+      const method = isEditing ? "PATCH" : "POST"
+
+      const response = await fetch(url, {
+        method,
         headers: {
           "Content-Type": "application/json",
         },
@@ -69,15 +103,15 @@ export function ProjectForm() {
       const result = await response.json()
 
       if (!response.ok) {
-        throw new Error(result.error || "Failed to create project")
+        throw new Error(result.error || `Failed to ${isEditing ? "update" : "create"} project`)
       }
 
       toast({
-        title: "Project created",
-        description: "Your project has been created successfully",
+        title: isEditing ? "Project updated" : "Project created",
+        description: `Your project has been ${isEditing ? "updated" : "created"} successfully`,
       })
 
-      router.push("/admin/dashboard")
+      router.push("/admin/projects")
       router.refresh()
     } catch (error: any) {
       toast({
@@ -131,12 +165,12 @@ export function ProjectForm() {
                 <FormControl>
                   <Select
                     onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    value={field.value}
                   >
                     <FormItem>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue />
+                          <SelectValue placeholder="Select category" />
                         </SelectTrigger>
                       </FormControl>
                     </FormItem>
@@ -170,16 +204,49 @@ export function ProjectForm() {
 
           <FormField
             control={form.control}
-            name="year"
+            name="completionDate"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel>Year</FormLabel>
+                <FormLabel>Completion Date</FormLabel>
                 <FormControl>
-                  <Input 
-                    type="number" 
-                    {...field} 
+                  {/* <Input
+                    type="date"
+                    {...field}
                     onChange={(e) => field.onChange(Number(e.target.value))}
-                  />
+                    value={field.value}
+                  /> */}
+                  {/* <Calendar
+                    selected={field.value}
+                    onSelect={(e) => field.onChange(e)}
+                  /> */}
+
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-[280px] justify-start text-left font-normal",
+                          !field.value && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent
+                      className="w-auto p-0 bg-white shadow-lg z-50 border rounded-md"
+                      side="bottom"
+                      align="start"
+                    >
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        initialFocus
+                        className="rounded-md border shadow w-fit"
+                      />
+                    </PopoverContent>
+                  </Popover>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -197,6 +264,7 @@ export function ProjectForm() {
                     type="number"
                     {...field}
                     onChange={(e) => field.onChange(Number(e.target.value))}
+                    value={field.value}
                   />
                 </FormControl>
                 <FormMessage />
@@ -322,8 +390,33 @@ export function ProjectForm() {
           )}
         />
 
+
+        <FormField
+          control={form.control}
+          name="isActive"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4 max-w-xl">
+              <div className="space-y-0.5">
+                <FormLabel className="text-base">Active Project</FormLabel>
+                <FormDescription>
+                  Active project will be shown 
+                </FormDescription>
+              </div>
+              <FormControl>
+                <div className="flex items-center gap-2 w-[80px]">
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    className="data-[state=checked]:bg-primary w-full"
+                  />
+                </div>
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
         <Button type="submit" disabled={isLoading}>
-          {isLoading ? "Creating..." : "Create Project"}
+          {isLoading ? (isEditing ? "Updating..." : "Creating...") : (isEditing ? "Update Project" : "Create Project")}
         </Button>
       </form>
     </Form>

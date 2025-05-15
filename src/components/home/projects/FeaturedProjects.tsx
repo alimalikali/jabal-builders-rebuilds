@@ -67,7 +67,7 @@ const FeaturedProjects = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.filter(project => project.isFeatured).map((project, index) => (
+          {projects.filter(project => project.isFeatured && project.isActive).map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>

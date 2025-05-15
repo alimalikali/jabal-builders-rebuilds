@@ -1,5 +1,5 @@
 import dbConnect from '@/lib/mongoose';
-import Project from '@/models/project';
+import Testimonial from '@/models/testimonial';
 import { NextResponse } from 'next/server';
 
 export async function GET(
@@ -10,16 +10,16 @@ export async function GET(
   const _id = params.id;
   try {
     await dbConnect();
-    const project = await Project.findById(_id);
-    if (!project) {
+    const testimonial = await Testimonial.findById(_id);
+    if (!testimonial) {
       return NextResponse.json(
-        { error: 'Project not found' },
+        { error: 'Testimonial not found' },
         { status: 404 }
       );
     }
-    return NextResponse.json(project);
+    return NextResponse.json(testimonial);
   } catch (error) {
-    console.error('API: Error fetching project:', error);
+    console.error('API: Error fetching testimonial:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -34,8 +34,8 @@ export async function DELETE(
   const params = await props.params;
   const _id = params.id;
   await dbConnect();
-  await Project.findByIdAndDelete(_id);
-  return NextResponse.json({ message: 'Project deleted successfully' });
+  await Testimonial.findByIdAndDelete(_id);
+  return NextResponse.json({ message: 'Testimonial deleted successfully' });
 }
 
 export async function PATCH(
@@ -46,6 +46,6 @@ export async function PATCH(
   const _id = params.id;
   await dbConnect();
   const body = await request.json();
-  await Project.findByIdAndUpdate(_id, body);
-  return NextResponse.json({ message: 'Project updated successfully' });
+  await Testimonial.findByIdAndUpdate(_id, body);
+  return NextResponse.json({ message: 'Testimonial updated successfully' });
 }

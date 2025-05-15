@@ -87,7 +87,7 @@ export const Projects = ({ initialCategory = "All" }: ProjectsProps) => {
         <div className="fluid-container px-4 sm:px-6 md:px-8">
           {filteredProjects.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-              {filteredProjects.map((project, index) => (
+              {filteredProjects.filter(project => project.isActive).map((project, index) => (
                 <ProjectCard key={index} project={project} index={index} />
               ))}
             </div>

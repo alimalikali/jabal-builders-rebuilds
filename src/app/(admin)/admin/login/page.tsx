@@ -1,23 +1,21 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { Building2 } from "lucide-react"
-import { loginSchema, type LoginFormValues } from "@/lib/validators"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { loginSchema, type LoginFormValues } from "@/lib/validators"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Building2 } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
-  const searchParams = useSearchParams()
   const { toast } = useToast()
-  const from = searchParams.get("from") || "/admin/dashboard"
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -50,7 +48,7 @@ export default function LoginPage() {
         description: "Welcome to the admin dashboard",
       })
 
-      router.push(from)
+      router.push("/admin/dashboard")
       router.refresh()
     } catch (error: any) {
       toast({
@@ -64,7 +62,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted/40 p-4">
+    <div className="flex items-center justify-center min-h-[calc(100vh-8rem)] p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <div className="flex justify-center mb-4">
@@ -88,7 +86,7 @@ export default function LoginPage() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="admin@jabarbuilder.com" {...field} />
+                      <Input placeholder="admin@jabarbuilder.com" {...field}  />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -101,7 +99,7 @@ export default function LoginPage() {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="••••••••" {...field} />
+                      <Input type="password" placeholder="password" {...field}  />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

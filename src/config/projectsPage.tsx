@@ -12,13 +12,14 @@ export const projectsData: Project[] = [
       architect: "Morgan & Associates",
       area: "85,000 sq m",
       isFeatured: true,
-      year: 2023,
+      completionDate: new Date("2023-01-01"),
       features: [
         "LEED Platinum certification",
         "Smart building management system",
         "Rooftop garden and social spaces",
         "Floor-to-ceiling glass façade"
-      ]
+      ],
+      isActive: true,
     },
     {
       _id: "2",
@@ -31,13 +32,14 @@ export const projectsData: Project[] = [
       architect: "Foster & Williams",
       area: "32,000 sq m",
       isFeatured: true,
-      year: 2022,
+      completionDate: new Date("2022-01-01"),
       features: [
         "Acoustically optimized auditorium",
         "Interactive exhibition spaces",
         "Public gardens and water features",
         "Energy-efficient climate control"
-      ]
+      ],
+      isActive: true,
     },
     {
       _id: "3",
@@ -50,13 +52,14 @@ export const projectsData: Project[] = [
       architect: "Al Masri International",
       area: "120,000 sq m",
       isFeatured: false,
-      year: 2024,
+      completionDate: new Date("2024-01-01"),
       features: [
         "Infinity pool with city views",
         "Smart home technology",
         "Private fitness center",
         "Landscaped gardens and walking paths"
-      ]
+      ],
+      isActive: true,
     },
     {
       _id: "4",
@@ -69,13 +72,14 @@ export const projectsData: Project[] = [
       architect: "Tanaka Design Studio",
       area: "9,800 sq m",
       isFeatured: false,
-      year: 2021,
+      completionDate: new Date("2021-01-01"),
       features: [
         "Specialized lighting systems",
         "Modular exhibition spaces",
         "Temperature and humidity control",
         "Multimedia installation capabilities"
-      ]
+      ],
+      isActive: true,
     },
     {
       _id: "5",
@@ -88,13 +92,14 @@ export const projectsData: Project[] = [
       architect: "Lim & Partners",
       area: "95,000 sq m",
       isFeatured: false,
-      year: 2023,
+      completionDate: new Date("2023-01-01"),
       features: [
         "Urban farming terraces",
         "Sky bridges connecting towers",
         "Rainwater harvesting system",
         "Mixed-use commercial and residential spaces"
-      ]
+      ],
+      isActive: true,
     }
   ];
   

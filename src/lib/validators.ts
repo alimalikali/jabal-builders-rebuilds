@@ -10,8 +10,9 @@ export const projectSchema = z.object({
   architect: z.string().min(3, { message: "Architect name is required" }),
   area: z.coerce.number().positive({ message: "Area must be a positive number" }),
   features: z.array(z.string()).min(1, { message: "At least one feature is required" }),
-  year: z.coerce.number().positive({ message: "Year must be a positive number" }),
   isFeatured: z.boolean().optional(),
+  completionDate: z.date(),
+  isActive: z.boolean().optional(),
 })
 
 export const testimonialSchema = z.object({
@@ -23,11 +24,12 @@ export const testimonialSchema = z.object({
   bgColor: z.enum(["amber", "sky", "purple", "pink", "emerald"], {
     message: "Valid hex color code is required",
   }),
+  isActive: z.boolean().optional(),
 })
 
 export const loginSchema = z.object({
-  email: z.string().email({ message: "Valid email is required" }),
-  password: z.string().min(6, { message: "Password must be at least 6 characters" }),
+  email: z.string().email({ message: "Invalid email" }),
+  password: z.string().min(8, { message: "Invalid password" }),
 })
 
 export type ProjectFormValues = z.infer<typeof projectSchema>

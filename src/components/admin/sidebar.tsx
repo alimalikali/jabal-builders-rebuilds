@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Building2, Home, LogOut, MessageSquare } from "lucide-react"
+import { Building2, Home, LogOut, MessageSquare, PlusCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
@@ -47,14 +47,24 @@ export function AdminSidebar() {
       icon: Home,
     },
     {
+      title: "Projects",
+      href: "/admin/projects",
+      icon: Building2,
+    },
+    {
       title: "Add Project",
       href: "/admin/add-project",
-      icon: Building2,
+      icon: PlusCircle,
+    },
+    {
+      title: "Testimonials",
+      href: "/admin/testimonials",
+      icon: MessageSquare,
     },
     {
       title: "Add Testimonial",
       href: "/admin/add-testimonial",
-      icon: MessageSquare,
+      icon: PlusCircle,
     },
   ]
 
