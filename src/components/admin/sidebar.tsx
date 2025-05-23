@@ -52,20 +52,10 @@ export function AdminSidebar() {
       icon: Building2,
     },
     {
-      title: "Add Project",
-      href: "/admin/add-project",
-      icon: PlusCircle,
-    },
-    {
       title: "Testimonials",
       href: "/admin/testimonials",
       icon: MessageSquare,
-    },
-    {
-      title: "Add Testimonial",
-      href: "/admin/add-testimonial",
-      icon: PlusCircle,
-    },
+    }
   ]
 
   return (

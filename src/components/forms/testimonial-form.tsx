@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Switch } from "@radix-ui/react-switch"
+import { Switch } from "../ui/switch"
 
 interface TestimonialFormProps {
   id?: string | null
@@ -35,27 +35,27 @@ export function TestimonialForm({ id }: TestimonialFormProps) {
     },
   })
 
-    // Fetch project data if editing
-    useEffect(() => {
-      if (isEditing) {
-        const fetchTestimonial = async () => {
-          try {
-            const response = await fetch(`/api/testimonials/${id}`)
-            if (!response.ok) throw new Error("Failed to fetch testimonial")
-            const data = await response.json()
-            form.reset(data)
-          } catch (error) {
-            toast({
-              title: "Error",
-              description: "Failed to load testimonial data",
-              variant: "destructive",
-            })
-            router.push("/admin/testimonials")
-          }
+  // Fetch project data if editing
+  useEffect(() => {
+    if (isEditing) {
+      const fetchTestimonial = async () => {
+        try {
+          const response = await fetch(`/api/testimonials/${id}`)
+          if (!response.ok) throw new Error("Failed to fetch testimonial")
+          const data = await response.json()
+          form.reset(data)
+        } catch (error) {
+          toast({
+            title: "Error",
+            description: "Failed to load testimonial data",
+            variant: "destructive",
+          })
+          router.push("/admin/testimonials")
         }
-        fetchTestimonial()
       }
-    }, [id, form, router, toast, isEditing])
+      fetchTestimonial()
+    }
+  }, [id, form, router, toast, isEditing])
 
   async function onSubmit(data: TestimonialFormValues) {
     setIsLoading(true)
@@ -218,12 +218,22 @@ export function TestimonialForm({ id }: TestimonialFormProps) {
           control={form.control}
           name="isActive"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Active</FormLabel>
+            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4 max-w-xl">
+              <div className="space-y-0.5">
+                <FormLabel className="text-base">Active Testimonial</FormLabel>
+                <FormDescription>
+                  Active testimonial will be shown
+                </FormDescription>
+              </div>
               <FormControl>
-                <Switch checked={field.value} onCheckedChange={field.onChange} />
-                  </FormControl>
-              <FormDescription>Toggle to activate or deactivate the testimonial</FormDescription>
+                <div className="flex items-center gap-2 w-[80px]">
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    className="data-[state=checked]:bg-primary w-full"
+                  />
+                </div>
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}

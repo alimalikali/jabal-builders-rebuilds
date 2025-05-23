@@ -8,11 +8,12 @@ export const projectSchema = z.object({
   imageSrc: z.string().url({ message: "Valid image URL is required" }),
   videoSrc: z.string().url({ message: "Valid video URL is required" }).optional().or(z.literal("")),
   architect: z.string().min(3, { message: "Architect name is required" }),
-  area: z.coerce.number().positive({ message: "Area must be a positive number" }),
+  area: z.coerce.string().min(1, { message: "Area is required" }),
   features: z.array(z.string()).min(1, { message: "At least one feature is required" }),
   isFeatured: z.boolean().optional(),
-  completionDate: z.date(),
   isActive: z.boolean().optional(),
+  completionDate: z.coerce.date().optional(),
+
 })
 
 export const testimonialSchema = z.object({

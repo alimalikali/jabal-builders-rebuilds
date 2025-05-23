@@ -40,7 +40,7 @@ export function ProjectForm({ id }: ProjectFormProps) {
       imageSrc: "",
       videoSrc: "",
       architect: "",
-      area: 10000,
+      area: "10000",
       features: [],
       completionDate: new Date(),
       isFeatured: false,
@@ -261,9 +261,9 @@ export function ProjectForm({ id }: ProjectFormProps) {
                 <FormLabel>Area (sq ft)</FormLabel>
                 <FormControl>
                   <Input
-                    type="number"
+                    type="text"
                     {...field}
-                    onChange={(e) => field.onChange(Number(e.target.value))}
+                    onChange={(e) => field.onChange(e.target.value)}
                     value={field.value}
                   />
                 </FormControl>
@@ -411,6 +411,7 @@ export function ProjectForm({ id }: ProjectFormProps) {
                   />
                 </div>
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
