@@ -2,30 +2,54 @@
 
 ## Overview
 
-This guide covers the deployment process for the Jabal Builders website. The application can be deployed to various platforms, with Vercel being the recommended option for Next.js applications.
+This guide covers the deployment process for the Jabal Builders website. The application is deployed on Vercel, which is the recommended platform for Next.js applications.
 
 ## Prerequisites
 
 Before deployment, ensure you have:
 - All environment variables configured
-- Database set up and accessible
+- MongoDB database set up and accessible
+- Resend API key for email functionality
 - Domain name (if using custom domain)
 - SSL certificate (if using custom domain)
 
-## Deployment Options
+## Vercel Deployment
 
-### 1. Vercel Deployment (Recommended)
+### 1. GitHub Integration (Recommended)
 
-#### Automatic Deployment
+1. **Push your code to GitHub**
+   - Create a GitHub repository
+   - Push your code to the repository
 
-1. **Connect to GitHub**
-   - Push your code to GitHub
+2. **Connect to Vercel**
    - Go to [Vercel](https://vercel.com)
-   - Import your repository
-   - Configure environment variables
-   - Deploy
+   - Import your GitHub repository
+   - Select the repository and configure the project
 
-#### Manual Deployment
+3. **Configure Environment Variables**
+   Add the following environment variables in Vercel project settings:
+   ```
+   # Database
+   MONGODB_URI=your_mongodb_uri
+
+   # Email (Resend)
+   RESEND_API_KEY=your_resend_api_key
+   EMAIL_TO=admin@yourdomain.com
+   EMAIL_FROM=noreply@yourdomain.com
+
+   # Authentication
+   AUTH_SECRET=your_auth_secret
+   AUTH_URL=https://your-domain.com/api/auth
+
+   # Next.js
+   NEXT_PUBLIC_APP_URL=https://your-domain.com
+   ```
+
+4. **Deploy**
+   - Vercel will automatically deploy your application
+   - Each push to the main branch will trigger a new deployment
+
+### 2. Manual Deployment using Vercel CLI
 
 1. **Install Vercel CLI**
    ```bash
@@ -47,300 +71,128 @@ Before deployment, ensure you have:
    vercel --prod
    ```
 
-### 2. AWS Deployment
+## Domain Configuration
 
-#### Using AWS Elastic Beanstalk
+### 1. Custom Domain Setup in Vercel
 
-1. **Install EB CLI**
-   ```bash
-   pip install awsebcli
-   ```
+1. **Add Domain**
+   - Go to your project settings in Vercel
+   - Navigate to Domains
+   - Add your custom domain
 
-2. **Initialize EB Application**
-   ```bash
-   eb init
-   ```
+2. **Configure DNS**
+   - Update your DNS settings as per Vercel's instructions
+   - Wait for DNS propagation
 
-3. **Create Environment**
-   ```bash
-   eb create production
-   ```
+### 2. SSL Configuration
 
-4. **Deploy**
-   ```bash
-   eb deploy
-   ```
-
-#### Using AWS EC2
-
-1. **Launch EC2 Instance**
-   - Choose Ubuntu Server
-   - Configure security groups
-   - Launch instance
-
-2. **Connect to Instance**
-   ```bash
-   ssh -i your-key.pem ubuntu@your-instance-ip
-   ```
-
-3. **Install Dependencies**
-   ```bash
-   sudo apt update
-   sudo apt install nodejs npm nginx
-   ```
-
-4. **Deploy Application**
-   ```bash
-   git clone your-repo
-   cd your-repo
-   npm install
-   npm run build
-   ```
-
-5. **Configure Nginx**
-   ```nginx
-   server {
-       listen 80;
-       server_name your-domain.com;
-
-       location / {
-           proxy_pass http://localhost:3000;
-           proxy_http_version 1.1;
-           proxy_set_header Upgrade $http_upgrade;
-           proxy_set_header Connection 'upgrade';
-           proxy_set_header Host $host;
-           proxy_cache_bypass $http_upgrade;
-       }
-   }
-   ```
-
-6. **Start Application**
-   ```bash
-   npm start
-   ```
-
-### 3. DigitalOcean Deployment
-
-1. **Create Droplet**
-   - Choose Ubuntu
-   - Select plan
-   - Choose datacenter
-   - Add SSH key
-
-2. **Connect to Droplet**
-   ```bash
-   ssh root@your-droplet-ip
-   ```
-
-3. **Install Dependencies**
-   ```bash
-   apt update
-   apt install nodejs npm nginx
-   ```
-
-4. **Deploy Application**
-   ```bash
-   git clone your-repo
-   cd your-repo
-   npm install
-   npm run build
-   ```
-
-5. **Configure Nginx**
-   ```nginx
-   server {
-       listen 80;
-       server_name your-domain.com;
-
-       location / {
-           proxy_pass http://localhost:3000;
-           proxy_http_version 1.1;
-           proxy_set_header Upgrade $http_upgrade;
-           proxy_set_header Connection 'upgrade';
-           proxy_set_header Host $host;
-           proxy_cache_bypass $http_upgrade;
-       }
-   }
-   ```
-
-6. **Start Application**
-   ```bash
-   npm start
-   ```
+- Vercel automatically provides SSL certificates through Let's Encrypt
+- No manual configuration required
+- Certificates are automatically renewed
 
 ## Environment Configuration
 
-### Required Environment Variables
+### Production Environment Variables
 
 ```env
 # Database
-MONGODB_URI=your_mongodb_connection_string
+MONGODB_URI=your_mongodb_uri
+
+# Email (Resend)
+RESEND_API_KEY=your_resend_api_key
+EMAIL_TO=admin@yourdomain.com
+EMAIL_FROM=noreply@yourdomain.com
 
 # Authentication
-JWT_SECRET=your_jwt_secret
-JWT_EXPIRES_IN=7d
-
-# Email
-RESEND_API_KEY=your_resend_api_key
-EMAIL_FROM=noreply@yourdomain.com
-EMAIL_TO=admin@yourdomain.com
+AUTH_SECRET=your_auth_secret
+AUTH_URL=https://your-domain.com/api/auth
 
 # Next.js
-NEXT_PUBLIC_API_URL=https://your-domain.com/api
+NEXT_PUBLIC_APP_URL=https://your-domain.com
 ```
 
-## SSL Configuration
+## Monitoring and Analytics
 
-### Using Let's Encrypt
+### 1. Vercel Analytics
 
-1. **Install Certbot**
-   ```bash
-   sudo apt install certbot python3-certbot-nginx
-   ```
+- Enable Vercel Analytics in project settings
+- Monitor page views and performance metrics
+- Track Core Web Vitals
 
-2. **Obtain Certificate**
-   ```bash
-   sudo certbot --nginx -d your-domain.com
-   ```
+### 2. Error Monitoring
 
-3. **Auto-renewal**
-   ```bash
-   sudo certbot renew --dry-run
-   ```
+- Use Vercel Error Monitoring
+- Set up error alerts
+- Monitor application errors
 
-## Monitoring Setup
+### 3. Performance Monitoring
 
-### 1. Application Monitoring
+- Use Vercel Speed Insights
+- Monitor API routes performance
+- Track page load times
 
-#### Using PM2
+## Deployment Best Practices
 
-1. **Install PM2**
-   ```bash
-   npm install -g pm2
-   ```
+1. **Pre-deployment Checklist**
+   - Run all tests
+   - Check for linting errors
+   - Verify environment variables
+   - Test build locally
 
-2. **Start Application**
-   ```bash
-   pm2 start npm --name "jabal-builders" -- start
-   ```
+2. **Security**
+   - Use strong environment secrets
+   - Enable security headers
+   - Configure CORS properly
 
-3. **Monitor**
-   ```bash
-   pm2 monit
-   ```
+3. **Performance**
+   - Enable caching where appropriate
+   - Optimize images and assets
+   - Use CDN for static assets
 
-### 2. Server Monitoring
+## Backup and Recovery
 
-#### Using New Relic
+1. **Database Backup**
+   - Set up automated MongoDB backups
+   - Store backups in secure location
+   - Test backup restoration process
 
-1. **Install New Relic**
-   ```bash
-   npm install newrelic
-   ```
+2. **Code Backup**
+   - Maintain Git repository backups
+   - Document deployment configurations
+   - Store environment variables securely
 
-2. **Configure**
-   ```javascript
-   // newrelic.js
-   exports.config = {
-     app_name: ['Jabal Builders'],
-     license_key: 'your_license_key',
-     logging: {
-       level: 'info'
-     }
-   };
-   ```
+## Troubleshooting
 
-## Backup Strategy
+### Common Deployment Issues
 
-### 1. Database Backup
+1. **Build Failures**
+   - Check build logs in Vercel
+   - Verify dependencies
+   - Check environment variables
 
-```bash
-# MongoDB Backup
-mongodump --uri="your_mongodb_uri" --out=/backup/$(date +%Y%m%d)
+2. **Runtime Errors**
+   - Check Vercel logs
+   - Verify database connection
+   - Check API endpoints
 
-# Restore
-mongorestore --uri="your_mongodb_uri" /backup/backup_folder
-```
-
-### 2. Application Backup
-
-```bash
-# Backup
-tar -czf backup.tar.gz /path/to/application
-
-# Restore
-tar -xzf backup.tar.gz -C /path/to/restore
-```
+3. **Performance Issues**
+   - Monitor Vercel Analytics
+   - Check database queries
+   - Optimize API responses
 
 ## Maintenance
 
-### Regular Tasks
+1. **Regular Updates**
+   - Update dependencies regularly
+   - Monitor security advisories
+   - Keep documentation updated
 
-1. **Update Dependencies**
-   ```bash
-   npm update
-   ```
+2. **Monitoring**
+   - Check Vercel dashboard regularly
+   - Monitor error rates
+   - Track performance metrics
 
-2. **Check Logs**
-   ```bash
-   pm2 logs
-   ```
-
-3. **Monitor Performance**
-   - Check server resources
-   - Monitor application metrics
-   - Review error logs
-
-### Troubleshooting
-
-1. **Application Issues**
-   - Check application logs
-   - Verify environment variables
-   - Test database connection
-
-2. **Server Issues**
-   - Check system logs
+3. **Scaling**
    - Monitor resource usage
-   - Verify network connectivity
-
-## Security Considerations
-
-1. **Firewall Configuration**
-   ```bash
-   sudo ufw allow 80
-   sudo ufw allow 443
-   sudo ufw enable
-   ```
-
-2. **Security Headers**
-   ```nginx
-   add_header X-Frame-Options "SAMEORIGIN";
-   add_header X-XSS-Protection "1; mode=block";
-   add_header X-Content-Type-Options "nosniff";
-   ```
-
-3. **Regular Updates**
-   - Update system packages
-   - Update Node.js
-   - Update dependencies
-
-## Performance Optimization
-
-1. **Enable Compression**
-   ```nginx
-   gzip on;
-   gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
-   ```
-
-2. **Caching**
-   ```nginx
-   location /static/ {
-       expires 1y;
-       add_header Cache-Control "public, no-transform";
-   }
-   ```
-
-3. **Load Balancing**
-   - Set up multiple instances
-   - Configure load balancer
-   - Implement health checks 
+   - Optimize database queries
+   - Use caching effectively 

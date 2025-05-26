@@ -1,28 +1,11 @@
 # API Documentation
 
-## Authentication Endpoints
+## Authentication
 
-### POST /api/auth/login
-Authenticate a user and return a JWT token.
+The application uses Next.js middleware for authentication with auth-session. Include the session cookie in requests:
 
-**Request Body:**
-```json
-{
-  "email": "string",
-  "password": "string"
-}
 ```
-
-**Response:**
-```json
-{
-  "token": "string",
-  "user": {
-    "id": "string",
-    "email": "string",
-    "role": "string"
-  }
-}
+Cookie: auth-session=<session-token>
 ```
 
 ## Projects Endpoints
@@ -30,23 +13,24 @@ Authenticate a user and return a JWT token.
 ### GET /api/projects
 Get all projects.
 
-
 **Response:**
 ```json
 {
   "projects": [
     {
-        "_id": "string",
-        "title": "string",
-        "location": "string",
-        "category": "string",
-        "description": "string",
-        "imageSrc": "string",
-        "videoSrc?": "string",
-        "architect": "string",
-        "isFeatured": "boolean",
-        "area": "string",
-        "year": "number",
+      "_id": "string",
+      "title": "string",
+      "location": "string",
+      "category": "string",
+      "description": "string",
+      "imageSrc": "string",
+      "videoSrc": "string (optional)",
+      "architect": "string",
+      "isFeatured": "boolean",
+      "area": "string",
+      "year": "number",
+      "createdAt": "string",
+      "updatedAt": "string"
     }
   ]
 }
@@ -64,11 +48,13 @@ Get a specific project by ID.
   "category": "string",
   "description": "string",
   "imageSrc": "string",
-  "videoSrc?": "string",
+  "videoSrc": "string (optional)",
   "architect": "string",
   "isFeatured": "boolean",
   "area": "string",
   "year": "number",
+  "createdAt": "string",
+  "updatedAt": "string"
 }
 ```
 
@@ -82,22 +68,24 @@ Get all testimonials.
 {
   "testimonials": [
     {
-      "id": "string",
+      "_id": "string",
       "name": "string",
       "role": "string",
       "content": "string",
       "rating": "number",
       "image": "string",
-      "bgColor": "string"
+      "bgColor": "string",
+      "createdAt": "string",
+      "updatedAt": "string"
     }
   ]
 }
 ```
 
-## Contact Endpoints
+## Contact Form Endpoint
 
 ### POST /api/send-email
-Send a contact form email.
+Send a contact form email using Resend.
 
 **Request Body:**
 ```json
@@ -113,8 +101,23 @@ Send a contact form email.
 **Response:**
 ```json
 {
-  "success": "boolean",
-  "message": "string"
+  "success": true,
+  "message": "Email sent successfully"
+}
+```
+
+## Dashboard Statistics
+
+### GET /api/dashboard-stats
+Get dashboard statistics (requires authentication).
+
+**Response:**
+```json
+{
+  "totalProjects": "number",
+  "featuredProjects": "number",
+  "totalTestimonials": "number",
+  "averageRating": "number"
 }
 ```
 
@@ -134,7 +137,7 @@ All endpoints may return the following error responses:
 ```json
 {
   "error": "Unauthorized",
-  "message": "Invalid or missing authentication token"
+  "message": "Invalid or missing session"
 }
 ```
 
@@ -159,11 +162,3 @@ All endpoints may return the following error responses:
 API endpoints are rate-limited to prevent abuse:
 - 100 requests per minute for authenticated users
 - 20 requests per minute for unauthenticated users
-
-## Authentication
-
-Most endpoints require authentication using a JWT token. Include the token in the Authorization header:
-
-```
-Authorization: auth-session
-```

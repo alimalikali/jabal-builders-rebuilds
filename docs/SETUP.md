@@ -3,16 +3,16 @@
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
-- Node.js (v18 or higher)
-- npm (v9 or higher)
+- Node.js (v19 or higher)
+- npm (v10 or higher)
 - Git
-- MongoDB (v6 or higher)
+- MongoDB (v7 or higher)
 
 ## Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/jabal-builders-rebuilds.git
+   git clone https://github.com/jabal-builders/jabal-builders-rebuilds.git
    cd jabal-builders-rebuilds
    ```
 
@@ -25,14 +25,19 @@ Before you begin, ensure you have the following installed:
    Create a `.env` file in the root directory with the following variables:
    ```env
    # Database
-    MONGODB_URI=xxxxxxxxxxxx
+   MONGODB_URI=your_mongodb_uri
 
    # Email (Resend)
-    RESEND_API_KEY=aaaaaaaaaaaaaaaa
-    EMAIL_TO=xxxx@gmail.com
+   RESEND_API_KEY=your_resend_api_key
+   EMAIL_TO=admin@yourdomain.com
+   EMAIL_FROM=noreply@yourdomain.com
+
+   # Authentication
+   AUTH_SECRET=your_auth_secret
+   AUTH_URL=http://localhost:3000/api/auth
 
    # Next.js
-   NEXT_PUBLIC_API_URL=http://localhost:3000/api
+   NEXT_PUBLIC_APP_URL=http://localhost:3000
    ```
 
 4. **Database Setup**
@@ -45,7 +50,7 @@ Before you begin, ensure you have the following installed:
 
 ## Development
 
-1. **Start the development server**
+1. **Start the development server with Turbopack**
    ```bash
    npm run dev
    ```
@@ -54,11 +59,6 @@ Before you begin, ensure you have the following installed:
 2. **Run linting**
    ```bash
    npm run lint
-   ```
-
-3. **Type checking**
-   ```bash
-   npm run type-check
    ```
 
 ## Building for Production
@@ -73,33 +73,44 @@ Before you begin, ensure you have the following installed:
    npm start
    ```
 
+## Project Structure
 
+```
+jabal-builders-rebuilds/
+├── src/
+│   ├── app/              # Next.js app router pages
+│   ├── components/       # React components
+│   ├── config/          # Configuration files
+│   ├── hooks/           # Custom React hooks
+│   ├── lib/             # Utility functions
+│   ├── models/          # MongoDB models
+│   └── types/           # TypeScript types
+├── public/              # Static assets
+├── docs/               # Documentation
+└── scripts/            # Database scripts
+```
 
-## Deployment
+## Dependencies
 
-### Vercel Deployment
+### Core Dependencies
+- Next.js 15.3.1
+- React 19.0.0
+- MongoDB with Mongoose
+- TypeScript
+- Tailwind CSS
 
-1. **Install Vercel CLI**
-   ```bash
-   npm install -g vercel
-   ```
+### UI Components
+- Radix UI components
+- Framer Motion
+- Recharts
+- Lucide React icons
 
-2. **Deploy to Vercel**
-   ```bash
-   vercel
-   ```
+### Form Handling
+- React Hook Form
+- Zod validation
 
-### Manual Deployment
-
-1. **Build the application**
-   ```bash
-   npm run build
-   ```
-
-2. **Start the production server**
-   ```bash
-   npm start
-   ```
+### Email
+- Resend for email sending
 
 ## Common Issues and Solutions
 
@@ -142,18 +153,12 @@ Before you begin, ensure you have the following installed:
    git push origin feature/your-feature-name
    ```
 
-5. **Create a pull request**
-   - Follow the PR template
-   - Request reviews
-   - Address feedback
-
 ## Code Standards
 
 - Follow the ESLint configuration
 - Use TypeScript for type safety
 - Write meaningful commit messages
 - Document new features and changes
-- Write tests for new functionality
 
 ## Performance Optimization
 
@@ -168,8 +173,8 @@ Before you begin, ensure you have the following installed:
    - Optimize bundle size
 
 3. **Caching**
-   - Implement proper caching strategies
    - Use SWR for data fetching
+   - Implement proper caching strategies
    - Optimize API responses
 
 ## Security Best Practices
@@ -180,7 +185,7 @@ Before you begin, ensure you have the following installed:
    - Rotate credentials regularly
 
 2. **Authentication**
-   - Implement proper JWT handling
+   - Implement proper session handling
    - Use secure password hashing
    - Implement rate limiting
 
