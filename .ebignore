@@ -1,0 +1,8 @@
+.git
+node_modules
+.next/cache
+.eslintcache
+*.log
+coverage
+**/*.test.*
+**/__tests__/**
