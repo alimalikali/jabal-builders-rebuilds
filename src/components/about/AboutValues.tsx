@@ -1,7 +1,7 @@
 'use client';
 
 import { coreValues } from '@/config/about';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, Variants } from 'framer-motion';
 import React, { useRef } from 'react';
 
 const AboutValues = () => {
@@ -19,20 +19,20 @@ const AboutValues = () => {
     }
   };
 
-  const item = {
+  const item: Variants = {
     hidden: { y: 50, opacity: 0 },
     show: { 
       y: 0, 
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 12,
         stiffness: 100
       }
     }
   };
 
-  const hoverCard = {
+  const hoverCard: Variants = {
     rest: { 
       scale: 1,
       boxShadow: "0px 0px 20px rgba(0,0,0,0.1)"
@@ -41,7 +41,7 @@ const AboutValues = () => {
       scale: 1.03,
       boxShadow: "0px 10px 30px rgba(0,0,0,0.15)",
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 300,
         damping: 10
       }

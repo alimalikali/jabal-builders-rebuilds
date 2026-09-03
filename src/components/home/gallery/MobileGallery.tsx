@@ -4,7 +4,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { GalleryItemType } from "@/types/gallery";
-import { AnimatePresence, motion, PanInfo, useAnimation } from "framer-motion";
+import { AnimatePresence, motion, PanInfo, useAnimation, Variants } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -56,7 +56,7 @@ const MobileGallery = ({ galleryItems }: MobileGalleryProps) => {
     }
   };
 
-  const variants = {
+  const variants: Variants = {
     enter: (dir: number) => ({
       x: dir > 0 ? "100%" : "-100%",
       opacity: 0.5,
@@ -67,7 +67,7 @@ const MobileGallery = ({ galleryItems }: MobileGalleryProps) => {
       opacity: 1,
       scale: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 300,
         damping: 30
       }
@@ -77,7 +77,7 @@ const MobileGallery = ({ galleryItems }: MobileGalleryProps) => {
       opacity: 0.5,
       scale: 0.95,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 300,
         damping: 30
       }
