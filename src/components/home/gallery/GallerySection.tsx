@@ -2,13 +2,9 @@
 import AnimatedSection from "@/components/animations/AnimatedSection";
 import { galleryItems } from "@/config/home";
 import { useIsMobile } from "@/hooks/use-mobile";
-import dynamic from 'next/dynamic';
 import GalleryTitle from "./GalleryTitle";
-const NoSSR = dynamic(() => import('./MobileGallery'), { ssr: false })
-const NoSSRDesktop = dynamic(() => import('./DesktopGallery'), { ssr: false })
-
-
-
+import MobileGallery from "./MobileGallery";
+import DesktopGallery from "./DesktopGallery";
 
 export const GallerySection = () => {
   const isMobile = useIsMobile();
@@ -18,10 +14,10 @@ export const GallerySection = () => {
       <div className="fluid-container px-4 sm:px-6 md:px-8">
         <GalleryTitle />
 
-        {isMobile ? (
-          <NoSSR galleryItems={galleryItems} />
+        {isMobile === undefined ? null : isMobile ? (
+          <MobileGallery galleryItems={galleryItems} />
         ) : (
-          <NoSSRDesktop galleryItems={galleryItems} />
+          <DesktopGallery galleryItems={galleryItems} />
         )}
       </div>
     </AnimatedSection>

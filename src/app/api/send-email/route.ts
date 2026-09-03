@@ -1,11 +1,20 @@
 import { Resend } from 'resend';
 import { EmailTemplate } from '@/components/email/email-template';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize lazily to prevent build errors when env var is missing during build
+let resend: Resend | null = null;
+if (process.env.RESEND_API_KEY) {
+  resend = new Resend(process.env.RESEND_API_KEY);
+}
 
 // You can secure this endpoint with your own CAPTCHA, rate-limiting, etc.
 
 export async function POST(req: Request) {
+  if (!resend) {
+    return new Response(JSON.stringify({ error: 'Email service not configured.' }), {
+      status: 500,
+    });
+  }
   try {
     const body = await req.json();
 
