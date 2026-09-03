@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { GalleryItemType } from "@/types/gallery";
 import { useHydrated } from "@/hooks/useHydrated";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 interface DesktopGalleryProps {
   galleryItems: GalleryItemType[];
@@ -49,7 +49,7 @@ const DesktopGallery = ({ galleryItems }: DesktopGalleryProps) => {
     setCurrentIndex(index);
   };
 
-  const variants = {
+  const variants: Variants = {
     enter: (direction: string) => ({
       x: direction === "right" ? "100%" : "-100%",
       opacity: 0,
@@ -61,7 +61,7 @@ const DesktopGallery = ({ galleryItems }: DesktopGalleryProps) => {
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
+        ease: [0.22, 1, 0.36, 1] as const
       }
     },
     exit: (direction: string) => ({
@@ -70,7 +70,7 @@ const DesktopGallery = ({ galleryItems }: DesktopGalleryProps) => {
       scale: 0.95,
       transition: {
         duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
+        ease: [0.22, 1, 0.36, 1] as const
       }
     })
   };

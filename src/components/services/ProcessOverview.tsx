@@ -35,13 +35,13 @@ export default function ProcessOverview() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: import('framer-motion').Variants = {
     hidden: { y: 50, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 15
       }
@@ -50,7 +50,7 @@ export default function ProcessOverview() {
       y: 50,
       opacity: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 15
       }
@@ -68,31 +68,31 @@ export default function ProcessOverview() {
     }
   };
 
-  const iconVariants = {
+  const iconVariants: import('framer-motion').Variants = {
     hover: {
       scale: 1.1,
       rotate: 5,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 300
       }
     }
   };
 
-  const underlineVariants = {
+  const underlineVariants: import('framer-motion').Variants = {
     hidden: { scaleX: 0 },
     visible: {
       scaleX: 1,
       transition: {
         duration: 0.8,
-        ease: [0.22, 1, 0.36, 1]
+        ease: [0.22, 1, 0.36, 1] as const
       }
     },
     exit: {
       scaleX: 0,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
+        ease: [0.22, 1, 0.36, 1] as const
       }
     }
   };

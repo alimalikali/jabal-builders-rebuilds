@@ -3,9 +3,9 @@
 import React from 'react';
 import Image from 'next/image';
 import { teamMembers } from '@/config/about';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: (i: number) => ({
     opacity: 1,
@@ -13,7 +13,7 @@ const cardVariants = {
     transition: {
       delay: i * 0.15,
       duration: 0.6,
-      ease: 'easeOut',
+      ease: [0.0, 0.0, 0.2, 1] as const, // easeOut
     },
   }),
 };
